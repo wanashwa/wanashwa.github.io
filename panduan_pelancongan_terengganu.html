@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesona Terengganu | Panduan Pelancongan Negeri Penyu</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        terengganu: {
+                            gold: '#D4AF37',
+                            yellow: '#FFCC00',
+                            dark: '#0F172A',
+                            ocean: '#0284C7',
+                            emerald: '#059669',
+                            sand: '#FDFBF7'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0284C7;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0369a1;
+        }
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.8) 100%);
+        }
+        .card-zoom:hover img {
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- Header / Navigation -->
+    <header class="fixed w-full z-40 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-full bg-amber-400 flex items-center justify-center text-slate-900 font-bold text-xl shadow-md group-hover:rotate-12 transition-transform">
+                        <i class="fa-solid me-0.5 fa-compass"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-extrabold tracking-tight font-serif text-slate-900 block leading-none">PESONA</span>
+                        <span class="text-xs tracking-widest text-sky-600 font-semibold uppercase">Terengganu</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center space-x-8 font-medium text-slate-600">
+                    <a href="#utamanya" class="hover:text-sky-600 transition-colors">Utama</a>
+                    <a href="#destinasi" class="hover:text-sky-600 transition-colors">Destinasi</a>
+                    <a href="#makanan" class="hover:text-sky-600 transition-colors">Makanan Terkenal</a>
+                    <a href="#kegemaran" class="hover:text-sky-600 transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-heart text-rose-500"></i>
+                        <span>Disimpan</span>
+                        <span id="fav-count" class="bg-rose-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">0</span>
+                    </a>
+                    <a href="#hubungi" class="bg-sky-600 hover:bg-sky-700 text-white px-5 py-2.5 rounded-full font-semibold shadow-md transition-all hover:shadow-lg">
+                        Hubungi Kami
+                    </a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-700 p-2 rounded-lg hover:bg-slate-100 focus:outline-none" aria-label="Buka Menu">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#utamanya" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-sky-50 hover:text-sky-600">Utama</a>
+            <a href="#destinasi" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-sky-50 hover:text-sky-600">Destinasi</a>
+            <a href="#makanan" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-sky-50 hover:text-sky-600">Makanan Terkenal</a>
+            <a href="#kegemaran" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-sky-50 hover:text-sky-600">Pilihan Disimpan</a>
+            <a href="#hubungi" class="block w-full text-center bg-sky-600 text-white px-4 py-2.5 rounded-xl font-semibold shadow-md">Hubungi Kami</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="utamanya" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-slate-900">
+        <!-- Background Image -->
+        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1920&auto=format&fit=crop" 
+             alt="Terengganu Beach" 
+             class="absolute inset-0 w-full h-full object-cover opacity-60 scale-105 transition-transform duration-10000 ease-out"
+             id="hero-bg"
+             onerror="this.src='https://placehold.co/1920x1080/0284C7/ffffff?text=Terengganu+Malaysia'">
+        
+        <div class="absolute inset-0 hero-gradient"></div>
+
+        <div class="relative max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8 py-32 z-10">
+            <span class="inline-block px-4 py-1.5 bg-amber-400/90 text-slate-900 text-xs sm:text-sm font-bold uppercase tracking-widest rounded-full mb-6 shadow-lg">
+                Selamat Datang ke Terengganu Darul Iman
+            </span>
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white font-serif tracking-tight leading-tight mb-6">
+                Terokai Keindahan <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-sky-300 to-emerald-300">Pantai, Warisan & Budaya</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-200 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+                Nikmati keindahan pulau Perhentian dan Redang, keunikan seni seni seni bina, serta kelezatan kulinari autentik pantai timur.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#destinasi" class="w-full sm:w-auto px-8 py-4 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-xl shadow-lg hover:shadow-sky-500/30 transition-all flex items-center justify-center gap-2">
+                    <span>Mula Meneroka</span>
+                    <i class="fa-solid fa-arrow-down"></i>
+                </a>
+                <a href="#makanan" class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-md font-semibold rounded-xl transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-utensils text-amber-400"></i>
+                    <span>Makanan Popolar</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 text-center animate-bounce hidden sm:block">
+            <span class="text-xs uppercase tracking-widest block mb-1">Skrol Bawah</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Destination Section -->
+    <section id="destinasi" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Title -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-sky-600 tracking-widest uppercase mb-2">Destinasi Pilihan</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold font-serif text-slate-900 mb-4">Tempat Menarik Untuk Dilawati</h3>
+                <p class="text-slate-600">Sama ada anda inginkan ketenangan pantai, keindahan pulau, keunikan seni bina, atau alam semulajadi yang segar, Terengganu mempunyai segalanya.</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-12" id="filter-buttons">
+                <button data-filter="all" class="filter-btn active px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm bg-sky-600 text-white">
+                    Semua Destinasi
+                </button>
+                <button data-filter="pulau" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm bg-white text-slate-600 hover:bg-slate-100">
+                    <i class="fa-solid fa-umbrella-beach text-sky-500 me-1"></i> Pulau & Pantai
+                </button>
+                <button data-filter="budaya" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm bg-white text-slate-600 hover:bg-slate-100">
+                    <i class="fa-solid fa-landmark text-amber-500 me-1"></i> Kebudayaan
+                </button>
+                <button data-filter="warisan" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm bg-white text-slate-600 hover:bg-slate-100">
+                    <i class="fa-solid fa-monument text-indigo-500 me-1"></i> Warisan & Ikon
+                </button>
+                <button data-filter="alam" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm bg-white text-slate-600 hover:bg-slate-100">
+                    <i class="fa-solid fa-tree text-emerald-500 me-1"></i> Alam Semulajadi
+                </button>
+            </div>
+
+            <!-- Destinations Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="destinations-grid">
+                <!-- Cards will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Food Section -->
+    <section id="makanan" class="py-24 bg-amber-50/50 border-y border-amber-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div>
+                    <h2 class="text-xs font-bold text-amber-600 tracking-widest uppercase mb-2">Gastronomi Tempatan</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold font-serif text-slate-900">Makanan Ciri Khas Terengganu</h3>
+                </div>
+                <p class="text-slate-600 max-w-md mt-4 md:mt-0">Nikmati cit Rasa autentik masakan Terengganu yang kaya dengan rempah-ratus dan hasil laut segar.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Food Item 1 -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <div class="relative h-48 rounded-xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=800&auto=format&fit=crop" 
+                             alt="Nasi Dagang" class="w-full h-full object-cover"
+                             onerror="this.src='https://placehold.co/800x600/D4AF37/ffffff?text=Nasi+Dagang'">
+                    </div>
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Hidangan Utama</span>
+                    <h4 class="text-xl font-bold text-slate-900 my-1">Nasi Dagang</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-3">Nasi kukus santan berkombinasi beras berasaskan beras herba, dihidangkan bersama gulai ikan tongkol autentik.</p>
+                    <div class="flex items-center text-xs text-amber-600 font-semibold gap-1">
+                        <i class="fa-solid fa-star"></i> Wajib Cuba
+                    </div>
+                </div>
+
+                <!-- Food Item 2 -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <div class="relative h-48 rounded-xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?q=80&w=800&auto=format&fit=crop" 
+                             alt="Keropok Lekor" class="w-full h-full object-cover"
+                             onerror="this.src='https://placehold.co/800x600/0284C7/ffffff?text=Keropok+Lekor'">
+                    </div>
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Kudapan Tempatan</span>
+                    <h4 class="text-xl font-bold text-slate-900 my-1">Keropok Lekor</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-3">Makanan snek berasaskan isi ikan segar dan tepung sagu, digoreng panas atau direbus dan dimakan bersama sos cili pedas manis.</p>
+                    <div class="flex items-center text-xs text-amber-600 font-semibold gap-1">
+                        <i class="fa-solid fa-star"></i> Paling Popular
+                    </div>
+                </div>
+
+                <!-- Food Item 3 -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <div class="relative h-48 rounded-xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?q=80&w=800&auto=format&fit=crop" 
+                             alt="Laksam" class="w-full h-full object-cover"
+                             onerror="this.src='https://placehold.co/800x600/059669/ffffff?text=Laksam'">
+                    </div>
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Sarapan Pagi</span>
+                    <h4 class="text-xl font-bold text-slate-900 my-1">Laksam Terengganu</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-3">Mi gulung beras berkrim kuah santan isi ikan, ditabur ulam-ulaman segar serta sambal belacan.</p>
+                    <div class="flex items-center text-xs text-amber-600 font-semibold gap-1">
+                        <i class="fa-solid fa-star"></i> Resipi Tradisional
+                    </div>
+                </div>
+
+                <!-- Food Item 4 -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <div class="relative h-48 rounded-xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=800&auto=format&fit=crop" 
+                             alt="Kuih Muih" class="w-full h-full object-cover"
+                             onerror="this.src='https://placehold.co/800x600/E11D48/ffffff?text=Kuih+Muih'">
+                    </div>
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Pemanis Mulut</span>
+                    <h4 class="text-xl font-bold text-slate-900 my-1">Kuih Akok & Nekbat</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-3">Pemanis mulut berasaskan telur dan gula melaka yang berlemak manis, sangat terkenal terutamanya di bulan Ramadan.</p>
+                    <div class="flex items-center text-xs text-amber-600 font-semibold gap-1">
+                        <i class="fa-solid fa-star"></i> Rasa Otentik
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bookmarked / Favorites Section -->
+    <section id="kegemaran" class="py-20 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold font-serif text-slate-900">Destinasi Pilihan Anda</h2>
+                    <p class="text-slate-600 text-sm">Senarai tempat yang telah anda simpan untuk perancangan percutian.</p>
+                </div>
+                <button id="clear-favs" class="text-xs text-rose-600 hover:text-rose-800 font-semibold underline hidden">
+                    Kosongkan Senarai
+                </button>
+            </div>
+
+            <!-- Favorite items container -->
+            <div id="favorites-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically filled with JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Inquiry Form -->
+    <section id="hubungi" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-sky-900 to-slate-900 rounded-3xl p-8 sm:p-12 lg:p-16 text-white shadow-2xl overflow-hidden relative">
+                <!-- Decorative Circle -->
+                <div class="absolute -right-16 -bottom-16 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+                    <div>
+                        <span class="text-amber-400 font-bold uppercase tracking-widest text-xs">Hubungi Kami</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold font-serif mt-2 mb-6">Merancang Percutian Anda Ke Terengganu?</h2>
+                        <p class="text-slate-300 mb-8 leading-relaxed">
+                            Mempunyai sebarang pertanyaan mengenai pakej pelancongan, penginapan, atau cadangan jadual perjalanan? Hantarkan mesej kepada kami!
+                        </p>
+
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-amber-400">
+                                    <i class="fa-solid fa-location-dot text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 uppercase">Lokasi Pusat Maklumat</p>
+                                    <p class="font-medium">Kuala Terengganu, Terengganu, Malaysia</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-amber-400">
+                                    <i class="fa-solid fa-envelope text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 uppercase">E-mel Pertanyaan</p>
+                                    <p class="font-medium">info@pesonaterengganu.my</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/10">
+                        <form id="contact-form" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-xs font-semibold text-slate-200 uppercase mb-1">Nama Penuh</label>
+                                <input type="text" id="name" required placeholder="Contoh: Wan Ainun" class="w-full px-4 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xs font-semibold text-slate-200 uppercase mb-1">Alamat E-mel</label>
+                                <input type="email" id="email" required placeholder="nama@contoh.com" class="w-full px-4 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400">
+                            </div>
+                            <div>
+                                <label for="destination" class="block text-xs font-semibold text-slate-200 uppercase mb-1">Destinasi Minat</label>
+                                <select id="destination" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-amber-400">
+                                    <option value="Pulau Redang">Pulau Redang</option>
+                                    <option value="Masjid Kristal">Masjid Kristal</option>
+                                    <option value="Jambatan Angkat">Jambatan Angkat (Drawbridge)</option>
+                                    <option value="Pasar Payang">Pasar Payang</option>
+                                    <option value="Tasik Kenyir">Tasik Kenyir</option>
+                                    <option value="Lain-lain">Lain-lain</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-xs font-semibold text-slate-200 uppercase mb-1">Mesej Anda</label>
+                                <textarea id="message" rows="3" required placeholder="Beritahu kami tarikh atau perancangan anda..." class="w-full px-4 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-3.5 bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold rounded-xl transition-all shadow-lg">
+                                Hantar Pertanyaan
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 mt-auto border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center gap-6">
+            <div>
+                <span class="text-xl font-bold font-serif text-white tracking-tight">PESONA TERENGGANU</span>
+                <p class="text-xs text-slate-500 mt-1">Panduan Pelancongan Percuma & Interaktif Negeri Terengganu.</p>
+            </div>
+            <div class="flex gap-6 text-xl">
+                <a href="#" class="hover:text-amber-400 transition-colors"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="hover:text-amber-400 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-amber-400 transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+            <div class="text-xs text-slate-500">
+                &copy; <span id="year"></span> Pesona Terengganu. Dicipta untuk GitHub Pages.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Detail Modal / Popup -->
+    <div id="modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative animate-fade-in">
+            <!-- Modal Close Button -->
+            <button id="close-modal" class="absolute top-4 right-4 bg-slate-100 hover:bg-slate-200 text-slate-700 w-10 h-10 rounded-full flex items-center justify-center z-10 transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Modal Content -->
+            <div id="modal-body">
+                <!-- Filled dynamically via Javascript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl z-50 hidden flex items-center gap-3 border border-slate-700 transition-all">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+        <span id="toast-msg" class="text-sm font-medium">Mesej Notifikasi</span>
+    </div>
+
+    <!-- JavaScript Data & Logic -->
+    <script>
+        // Tourist Destinations Data
+        const destinations = [
+            {
+                id: 'redang',
+                name: 'Pulau Redang',
+                category: 'pulau',
+                categoryLabel: 'Pulau & Pantai',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop',
+                location: 'Kuala Nerus / Setiu',
+                rating: 4.9,
+                desc: 'Pulau terkenal dengan air laut kebiruan yang jernih, terumbu karang yang indah, dan pasir pantai putih bersih. Sangat sesuai untuk aktiviti "snorkeling" dan selam skuba.',
+                activities: ['Snorkeling', 'Selam Skuba', 'Melihat Penyu', 'Matahari Terbit'],
+                bestTime: 'Mac hingga Oktober'
+            },
+            {
+                id: 'kristal',
+                name: 'Masjid Kristal',
+                category: 'budaya',
+                categoryLabel: 'Kebudayaan',
+                image: 'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?q=80&w=800&auto=format&fit=crop',
+                location: 'Taman Tamadun Islam, Pulau Wan Man',
+                rating: 4.7,
+                desc: 'Masjid unik yang diperbuat daripada kaca dan keluli stainless steel. Terletak di tepi Sungai Terengganu dan kelihatan sungguh memukau pada waktu malam dengan limpahan cahaya berkilauan.',
+                activities: ['Fotografi', 'Lawatan Kebudayaan', 'Menikmati Pemandangan Sungai'],
+                bestTime: 'Sepanjang Tahun (Sesuai pada waktu malam)'
+            },
+            {
+                id: 'drawbridge',
+                name: 'Jambatan Angkat (Drawbridge)',
+                category: 'warisan',
+                categoryLabel: 'Warisan & Ikon',
+                image: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?q=80&w=800&auto=format&fit=crop',
+                location: 'Kuala Terengganu',
+                rating: 4.8,
+                desc: 'Jambatan angkat terpanjang dan terawal di Asia Tenggara yang menghubungkan Kuala Terengganu dan Kuala Nerus. Menjadi seni bina ikonik moden negeri Terengganu.',
+                activities: ['Fotografi', 'Restoran Menara Kawalan', 'Bersiar-siar di Dataran'],
+                bestTime: 'Petang & Waktu Malam'
+            },
+            {
+                id: 'payang',
+                name: 'Pasar Payang',
+                category: 'warisan',
+                categoryLabel: 'Warisan & Ikon',
+                image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800&auto=format&fit=crop',
+                location: 'Pusat Bandar Kuala Terengganu',
+                rating: 4.6,
+                desc: 'Pusat membeli-belah tradisional popular untuk mendapatkan kain batik tempatan, songket, tembaga, keropok lekor, serta pelbagai cenderamata khas Terengganu.',
+                activities: ['Membeli-belah Batik & Songket', 'Membeli Cenderamata', 'Mencuba Makanan Tempatan'],
+                bestTime: 'Pagi hingga Petang'
+            },
+            {
+                id: 'kenyir',
+                name: 'Tasik Kenyir',
+                category: 'alam',
+                categoryLabel: 'Alam Semulajadi',
+                image: 'https://images.unsplash.com/photo-1511497584788-8767611136f6?q=80&w=800&auto=format&fit=crop',
+                location: 'Hulu Terengganu',
+                rating: 4.7,
+                desc: 'Tasik buatan manusia terbesar di Asia Tenggara yang dikelilingi hutan hujan tropika berusia jutaan tahun. Mempunyai ratusan pulau kecil, air terjun, dan gua semula jadi.',
+                activities: ['Rumah Bot (Houseboat)', 'Memancing', 'Melawat Air Terjun Lasir', 'Santuari Gajah'],
+                bestTime: 'Mac hingga September'
+            },
+            {
+                id: 'perhentian',
+                name: 'Pulau Perhentian',
+                category: 'pulau',
+                categoryLabel: 'Pulau & Pantai',
+                image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=800&auto=format&fit=crop',
+                location: 'Besut',
+                rating: 4.9,
+                desc: 'Terdiri daripada Pulau Perhentian Besar dan Kecil. Tempat berlepas kegemaran pelancong antarabangsa untuk aktiviti selam skuba dan kehidupan pantai yang tenang.',
+                activities: ['Berkayak Transparan', 'Melihat Hiu/Penyu', 'Mendaki Hilltop', 'Fiesta Pantai'],
+                bestTime: 'April hingga September'
+            }
+        ];
+
+        // Bookmarks / Favorites State saved in localStorage
+        let favorites = JSON.parse(localStorage.getItem('terengganu_favs')) || [];
+
+        // DOM Elements
+        const grid = document.getElementById('destinations-grid');
+        const favContainer = document.getElementById('favorites-container');
+        const favCountEl = document.getElementById('fav-count');
+        const modal = document.getElementById('modal');
+        const modalBody = document.getElementById('modal-body');
+        const closeModalBtn = document.getElementById('close-modal');
+        const clearFavsBtn = document.getElementById('clear-favs');
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toast-msg');
+
+        // Dynamic Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Render Destinations Function
+        function renderDestinations(category = 'all') {
+            grid.innerHTML = '';
+            
+            const filtered = category === 'all' 
+                ? destinations 
+                : destinations.filter(item => item.category === category);
+
+            filtered.forEach(item => {
+                const isFav = favorites.includes(item.id);
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl transition-all duration-300 card-zoom flex flex-col justify-between';
+                
+                card.innerHTML = `
+                    <div>
+                        <div class="relative h-56 overflow-hidden bg-slate-200">
+                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover transition-transform duration-500" onerror="this.src='https://placehold.co/800x600/0284C7/ffffff?text=${encodeURIComponent(item.name)}'">
+                            <span class="absolute top-4 left-4 bg-slate-900/70 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-full">
+                                ${item.categoryLabel}
+                            </span>
+                            <button onclick="toggleFavorite('${item.id}', event)" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center text-slate-700 hover:text-rose-500 transition-colors shadow">
+                                <i class="${isFav ? 'fa-solid text-rose-500' : 'fa-regular'} fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+                                <span><i class="fa-solid fa-location-dot text-sky-500 me-1"></i> ${item.location}</span>
+                                <span class="font-bold text-amber-500"><i class="fa-solid fa-star me-1"></i> ${item.rating}</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">${item.name}</h3>
+                            <p class="text-slate-600 text-sm line-clamp-2 leading-relaxed mb-4">${item.desc}</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <button onclick="openModal('${item.id}')" class="w-full py-2.5 bg-slate-100 hover:bg-sky-50 hover:text-sky-600 text-slate-700 font-semibold text-sm rounded-xl transition-colors flex items-center justify-center gap-2">
+                            <span>Maklumat Lanjut</span>
+                            <i class="fa-solid fa-circle-info"></i>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter Buttons Interactivity
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('bg-sky-600', 'text-white', 'active');
+                    b.classList.add('bg-white', 'text-slate-600');
+                });
+                button.classList.remove('bg-white', 'text-slate-600');
+                button.classList.add('bg-sky-600', 'text-white', 'active');
+
+                const filter = button.getAttribute('data-filter');
+                renderDestinations(filter);
+            });
+        });
+
+        // Toggle Favorite Item
+        function toggleFavorite(id, event) {
+            if (event) event.stopPropagation();
+            
+            const index = favorites.indexOf(id);
+            if (index > -1) {
+                favorites.splice(index, 1);
+                showToast('Destinasi dikeluarkan daripada senarai disimpan.');
+            } else {
+                favorites.push(id);
+                showToast('Destinasi berjaya disimpan!');
+            }
+
+            localStorage.setItem('terengganu_favs', JSON.stringify(favorites));
+            updateFavoritesUI();
+            
+            // Re-render grid to update icons
+            const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+            renderDestinations(activeFilter);
+        }
+
+        // Update Favorites UI
+        function updateFavoritesUI() {
+            favCountEl.textContent = favorites.length;
+            favContainer.innerHTML = '';
+
+            if (favorites.length === 0) {
+                favContainer.innerHTML = `
+                    <div class="col-span-full text-center py-12 bg-white rounded-2xl border border-dashed border-slate-300">
+                        <i class="fa-regular fa-heart text-4xl text-slate-300 mb-3 block"></i>
+                        <p class="text-slate-500 font-medium">Belum ada destinasi disimpan.</p>
+                        <p class="text-xs text-slate-400 mt-1">Tekan ikon hati pada destinasi pilihan anda untuk menyimpannya di sini.</p>
+                    </div>
+                `;
+                clearFavsBtn.classList.add('hidden');
+                return;
+            }
+
+            clearFavsBtn.classList.remove('hidden');
+            
+            const favItems = destinations.filter(item => favorites.includes(item.id));
+            favItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-xl p-4 flex gap-4 items-center shadow-sm border border-slate-200';
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="w-20 h-20 rounded-lg object-cover" onerror="this.src='https://placehold.co/200x200/0284C7/ffffff?text=${encodeURIComponent(item.name)}'">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-900 text-sm">${item.name}</h4>
+                        <p class="text-xs text-slate-500"><i class="fa-solid fa-location-dot me-1 text-sky-500"></i>${item.location}</p>
+                        <button onclick="openModal('${item.id}')" class="text-xs font-semibold text-sky-600 hover:underline mt-2 inline-block">Lihat Butiran</button>
+                    </div>
+                    <button onclick="toggleFavorite('${item.id}')" class="text-rose-500 hover:text-rose-700 p-2">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                `;
+                favContainer.appendChild(card);
+            });
+        }
+
+        // Clear All Favorites
+        clearFavsBtn.addEventListener('click', () => {
+            favorites = [];
+            localStorage.setItem('terengganu_favs', JSON.stringify(favorites));
+            updateFavoritesUI();
+            const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+            renderDestinations(activeFilter);
+            showToast('Semua simpanan telah dipadam.');
+        });
+
+        // Open Modal
+        function openModal(id) {
+            const item = destinations.find(d => d.id === id);
+            if (!item) return;
+
+            modalBody.innerHTML = `
+                <div class="relative h-64 sm:h-80 bg-slate-900">
+                    <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/800x600/0284C7/ffffff?text=${encodeURIComponent(item.name)}'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6 text-white">
+                        <span class="px-3 py-1 bg-amber-400 text-slate-900 font-bold text-xs uppercase rounded-full mb-2 inline-block">${item.categoryLabel}</span>
+                        <h2 class="text-2xl sm:text-3xl font-bold font-serif">${item.name}</h2>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-1"><i class="fa-solid fa-location-dot me-1 text-amber-400"></i> ${item.location}</p>
+                    </div>
+                </div>
+                <div class="p-6 sm:p-8">
+                    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">Penerangan Destinasi</h3>
+                    <p class="text-slate-700 leading-relaxed mb-6">${item.desc}</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <h4 class="text-xs font-bold text-sky-600 uppercase mb-2"><i class="fa-solid fa-calendar-check me-1"></i> Waktu Terbaik Lawatan</h4>
+                            <p class="text-sm text-slate-700 font-medium">${item.bestTime}</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <h4 class="text-xs font-bold text-amber-600 uppercase mb-2"><i class="fa-solid fa-star me-1"></i> Penarafan Pelawat</h4>
+                            <p class="text-sm text-slate-700 font-medium">${item.rating} / 5.0 Skor Kepuasan</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3">Aktiviti Utama</h3>
+                    <div class="flex flex-wrap gap-2">
+                        ${item.activities.map(act => `<span class="bg-sky-50 text-sky-700 font-medium text-xs px-3 py-1.5 rounded-lg border border-sky-100"><i class="fa-solid fa-check text-sky-500 me-1.5"></i>${act}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Modal
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Show Toast Notification
+        function showToast(message) {
+            toastMsg.textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Contact Form Handling
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast('Mesej anda telah berjaya dihantar! Kami akan menghubungi anda segera.');
+            e.target.reset();
+        });
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when link clicked
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Initialize Page
+        document.addEventListener('DOMContentLoaded', () => {
+            renderDestinations();
+            updateFavoritesUI();
+        });
+    </script>
+</body>
+</html>
