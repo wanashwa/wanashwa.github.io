@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AwesomeStay KL - Homestay Chow Kit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FDFBF7;
+            --card-bg: #FFFFFF;
+            --primary-brown: #5C4033;
+            --accent-beige: #F5EBE0;
+            --text-dark: #2C221E;
+            --text-muted: #6E6259;
+            --wa-green: #25D366;
+            --wa-green-hover: #1ebd56;
+            --border-color: #E6DFD5;
+            --shadow: 0 10px 30px rgba(92, 64, 51, 0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .navbar {
+            background-color: #FFFFFF;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .nav-container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 75px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-brown);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: #8C6D58;
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--accent-beige);
+            color: var(--primary-brown);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--primary-brown);
+            cursor: pointer;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-whatsapp {
+            background-color: var(--wa-green);
+            color: #FFFFFF;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: var(--wa-green-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-brown);
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background-color: #432E24;
+            transform: translateY(-2px);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .img-container {
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            background-color: #EFECE6;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .img-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .img-hint {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(44, 34, 30, 0.75);
+            color: #FFF;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            pointer-events: none;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.88);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-img {
+            max-width: 92%;
+            max-height: 85vh;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #FFF;
+            font-size: 2.5rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: var(--transition);
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.1);
+        }
+
+        footer {
+            margin-top: auto;
+            background-color: #FFFFFF;
+            border-top: 1px solid var(--border-color);
+            padding: 25px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: #FFFFFF;
+                padding: 20px;
+                border-bottom: 1px solid var(--border-color);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+        }
+    </style>
+    <style>
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        .hero-title {
+            font-size: 2.3rem;
+            color: var(--primary-brown);
+            line-height: 1.25;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero-sub {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+        }
+
+        .hero-img {
+            height: 380px;
+            border-radius: 14px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            color: var(--primary-brown);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-card .img-container {
+            height: 220px;
+        }
+
+        .gallery-card .card-body {
+            padding: 15px 20px;
+            font-weight: 600;
+            color: var(--primary-brown);
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            .hero-img {
+                height: 250px;
+            }
+            .hero-title {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">AwesomeStay<span>.KL</span></a>
+            <button class="mobile-toggle" id="menuToggle" aria-label="Buka Menu">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Utama</a></li>
+                <li><a href="bilik.html" >Bilik & Ruang</a></li>
+                <li><a href="lokasi.html" >Lokasi</a></li>
+                <li><a href="tempahan.html" >Harga & Tempahan</a></li>
+                <li><a href="hubungi.html" >Hubungi Kami</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <div>
+                <span style="background: var(--accent-beige); color: var(--primary-brown); padding: 5px 14px; border-radius: 20px; font-weight: 600; font-size: 0.85rem;">Pilihan Selesa di Chow Kit</span>
+                <h1 class="hero-title" style="margin-top: 12px;">Selamat Datang ke AwesomeStay KL</h1>
+                <p class="hero-sub">Nikmati penginapan homestay 3 bilik yang selesa, bersih, dan berkonsepkan minimalis hangat di pusat bandar Kuala Lumpur.</p>
+                <!-- CARA TUKAR: Butang CTA ke Halaman Tempahan -->
+                <a href="tempahan.html" class="btn btn-whatsapp">📱 Tempah Sekarang RM250/malam</a>
+            </div>
+            <!-- CARA TUKAR GAMBAR: Tukar src="images/utama-1.jpg" kepada gambar sebenar anda -->
+            <div class="img-container hero-img" onclick="openLightbox(this)">
+                <img src="images/utama-1.jpg" alt="Ruang Tamu Utama Homestay Chow Kit" onerror="this.src='https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1000&q=80'">
+                <span class="img-hint">Klik untuk besarkan</span>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <h2>Gambaran Suasana Homestay</h2>
+                <p style="color: var(--text-muted);">Ruang tamu yang lapang, dapur lengkap, dan bilik tidur bernuansa tenang.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="card gallery-card">
+                    <div class="img-container" onclick="openLightbox(this)">
+                        <img src="images/utama-2.jpg" alt="Ruang Dapur Bersih Homestay" onerror="this.src='https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80'">
+                        <span class="img-hint">Klik besarkan</span>
+                    </div>
+                    <div class="card-body">Ruang Dapur & Meja Makan</div>
+                </div>
+
+                <div class="card gallery-card">
+                    <div class="img-container" onclick="openLightbox(this)">
+                        <img src="images/utama-3.jpg" alt="Ruang Tamu & TV Homestay" onerror="this.src='https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80'">
+                        <span class="img-hint">Klik besarkan</span>
+                    </div>
+                    <div class="card-body">Ruang Tamu & Sofa Bersantai</div>
+                </div>
+
+                <div class="card gallery-card">
+                    <div class="img-container" onclick="openLightbox(this)">
+                        <img src="images/utama-4.jpg" alt="Suasana Bilik Tidur Homestay" onerror="this.src='https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=800&q=80'">
+                        <span class="img-hint">Klik besarkan</span>
+                    </div>
+                    <div class="card-body">3 Bilik Tidur Ber-Aircond</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container" style="padding:0;">
+            <p>&copy; 2026 AwesomeStay KL — Chow Kit, Kuala Lumpur. Hak Cipta Terpelihara.</p>
+        </div>
+    </footer>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close" onclick="forceCloseLightbox()">&times;</span>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="Gambar Besarkan">
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        if(menuToggle) {
+            menuToggle.addEventListener('click', () => navLinks.classList.toggle('show'));
+        }
+
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+
+        function openLightbox(wrapper) {
+            const img = wrapper.querySelector('img');
+            if(img) {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('active');
+            }
+        }
+
+        function closeLightbox(e) {
+            if (e.target !== lightboxImg) {
+                lightbox.classList.remove('active');
+            }
+        }
+
+        function forceCloseLightbox() {
+            lightbox.classList.remove('active');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

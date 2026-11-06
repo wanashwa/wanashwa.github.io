@@ -1,0 +1,544 @@
+<!DOCTYPE html><html lang="ms"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "surface-bright": "#fcf9f4",
+        "on-secondary-fixed-variant": "#5b412f",
+        "outline-variant": "#d4c3bd",
+        "inverse-surface": "#31302d",
+        "on-primary-fixed-variant": "#5c4033",
+        "surface-container-lowest": "#ffffff",
+        "on-primary": "#ffffff",
+        "secondary": "#755844",
+        "on-background": "#1c1c19",
+        "background": "#fcf9f4",
+        "surface-variant": "#e5e2dd",
+        "inverse-primary": "#e6bead",
+        "primary-fixed": "#ffdbcc",
+        "tertiary": "#3f2c22",
+        "on-tertiary-container": "#ccafa1",
+        "on-primary-fixed": "#2c160b",
+        "on-error-container": "#93000a",
+        "on-tertiary": "#ffffff",
+        "primary-fixed-dim": "#e6bead",
+        "surface": "#fcf9f4",
+        "on-surface": "#1c1c19",
+        "primary-container": "#5c4033",
+        "on-secondary-fixed": "#2b1707",
+        "tertiary-container": "#574237",
+        "on-secondary": "#ffffff",
+        "on-secondary-container": "#7a5c48",
+        "on-tertiary-fixed": "#28180f",
+        "surface-tint": "#765749",
+        "tertiary-fixed-dim": "#dfc0b2",
+        "on-tertiary-fixed-variant": "#584237",
+        "inverse-on-surface": "#f3f0eb",
+        "surface-container": "#f0ede9",
+        "on-primary-container": "#d3ac9c",
+        "secondary-container": "#ffd8bf",
+        "outline": "#82746f",
+        "error": "#ba1a1a",
+        "on-error": "#ffffff",
+        "primary": "#432a1e",
+        "surface-dim": "#dcdad5",
+        "surface-container-low": "#f6f3ee",
+        "secondary-fixed": "#ffdcc5",
+        "surface-container-highest": "#e5e2dd",
+        "secondary-fixed-dim": "#e5bfa7",
+        "surface-container-high": "#ebe8e3",
+        "on-surface-variant": "#504440",
+        "error-container": "#ffdad6",
+        "tertiary-fixed": "#fcdccd"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px"
+      },
+      "spacing": {
+        "margin": "4rem",
+        "space-sm": "0.5rem",
+        "space-xl": "2.5rem",
+        "space-2xl": "4rem",
+        "space-md": "1rem",
+        "gutter": "1.5rem",
+        "margin-mobile": "1.25rem",
+        "gutter-mobile": "1rem",
+        "space-3xl": "6rem",
+        "space-lg": "1.5rem",
+        "space-xs": "0.25rem"
+      },
+      "fontFamily": {
+        "headline-lg": [
+          "Plus Jakarta Sans"
+        ],
+        "headline-md": [
+          "Plus Jakarta Sans"
+        ],
+        "display-hero-mobile": [
+          "Plus Jakarta Sans"
+        ],
+        "display-hero": [
+          "Plus Jakarta Sans"
+        ],
+        "headline-lg-mobile": [
+          "Plus Jakarta Sans"
+        ],
+        "label-md": [
+          "Inter"
+        ],
+        "body-md": [
+          "Inter"
+        ],
+        "body-lg": [
+          "Inter"
+        ],
+        "body-sm": [
+          "Inter"
+        ],
+        "headline-sm": [
+          "Plus Jakarta Sans"
+        ],
+        "label-sm": [
+          "Inter"
+        ]
+      },
+      "fontSize": {
+        "headline-lg": [
+          "40px",
+          {
+            "lineHeight": "48px",
+            "letterSpacing": "-0.015em",
+            "fontWeight": "600"
+          }
+        ],
+        "headline-md": [
+          "28px",
+          {
+            "lineHeight": "36px",
+            "letterSpacing": "-0.01em",
+            "fontWeight": "600"
+          }
+        ],
+        "display-hero-mobile": [
+          "36px",
+          {
+            "lineHeight": "44px",
+            "letterSpacing": "-0.02em",
+            "fontWeight": "700"
+          }
+        ],
+        "display-hero": [
+          "56px",
+          {
+            "lineHeight": "68px",
+            "letterSpacing": "-0.02em",
+            "fontWeight": "700"
+          }
+        ],
+        "headline-lg-mobile": [
+          "28px",
+          {
+            "lineHeight": "36px",
+            "letterSpacing": "-0.015em",
+            "fontWeight": "600"
+          }
+        ],
+        "label-md": [
+          "14px",
+          {
+            "lineHeight": "20px",
+            "letterSpacing": "0.02em",
+            "fontWeight": "600"
+          }
+        ],
+        "body-md": [
+          "16px",
+          {
+            "lineHeight": "24px",
+            "letterSpacing": "0em",
+            "fontWeight": "400"
+          }
+        ],
+        "body-lg": [
+          "18px",
+          {
+            "lineHeight": "28px",
+            "letterSpacing": "-0.005em",
+            "fontWeight": "400"
+          }
+        ],
+        "body-sm": [
+          "14px",
+          {
+            "lineHeight": "20px",
+            "letterSpacing": "0em",
+            "fontWeight": "400"
+          }
+        ],
+        "headline-sm": [
+          "22px",
+          {
+            "lineHeight": "30px",
+            "letterSpacing": "0em",
+            "fontWeight": "600"
+          }
+        ],
+        "label-sm": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "letterSpacing": "0.04em",
+            "fontWeight": "500"
+          }
+        ]
+      }
+    }
+  }
+}</script></head><body class="bg-surface text-on-surface font-body-md text-body-md antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(92,64,51,0.04)]"><div class="h-20 max-w-[1240px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><div class="w-9 h-9 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-display-hero font-bold text-sm tracking-tight shadow-sm">WN</div><span class="font-headline-sm text-headline-sm text-primary tracking-tight hidden sm:inline-block">Wan Ainun Nashwa</span></div><nav class="hidden lg:flex items-center gap-space-sm bg-surface-container-low px-space-sm py-1.5 rounded-xl" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-sm"><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" data-path="about-me" href="index.html">Tentang Saya</a><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" data-path="portfolio" href="https://portfolioahmadirfan.my.canva.site/wan-ainun-nashwa" target="_blank">Portfolio</a><a aria-current="page" class="px-space-md py-1.5 transition-colors bg-primary-container text-on-primary font-bold rounded-lg shadow-sm" data-path="contact" href="hubungi.html">Hubungi</a></nav><div class="flex items-center gap-space-md"><a class="hidden sm:inline-flex items-center justify-center px-space-lg py-2 bg-primary hover:bg-tertiary text-on-primary font-label-md text-label-md rounded-lg transition-colors shadow-sm" href="https://wa.me/60187804575" target="_blank"><span class="material-symbols-outlined text-sm mr-1.5">chat</span>Hubungi Saya</a><div class="flex items-center p-0.5 bg-surface-container-high rounded-full"><img alt="Wan Ainun Nashwa" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6DTaVnc-3ksW197n83wcm2l8_zIQ1WceQKzzpfdASB1lyO3W95I0-8KIgS4zRcRFBz1NK-0cp2mXAjcGXgk7tzUNPpoYqZJTXntCYGrRoFx6H1n67fUySvWOAC1MSQxlCf9g7iw-5lSjfDRIuYzWyag-ndfjhs_R4ftm9DegEnJgROk1j_9iwWDcZy16c7l9YV9b1t2ljPFPFGNkmjvsnyg1AS4he6dJRxF7tLIk"></div></div></div></header><main class="w-full pt-20 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Subtle decorative ambient elements -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-40 right-10 w-96 h-96 bg-primary-fixed/30 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-80 -left-20 w-80 h-80 bg-secondary-container/20 rounded-full blur-2xl pointer-events-none"></div>
+<div class="max-w-[1240px] mx-auto px-margin-mobile md:px-margin pt-space-xl pb-space-3xl relative z-10">
+<!-- Editorial Header Section -->
+<section class="max-w-3xl mb-space-2xl">
+<div class="inline-flex items-center gap-space-xs px-space-md py-1 rounded-full bg-surface-container-high text-tertiary font-label-sm text-label-sm mb-space-md">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="">RESPON PANTAS • TERBUKA UNTUK KERJASAMA</span>
+</div>
+<h1 class="font-display-hero text-display-hero text-primary tracking-tight mb-space-sm">
+          Mari Berhubung.
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Pintu konsultasi sentiasa terbuka untuk kerjasama penulisan kreatif, penyuntingan naskhah, pengurusan komunikasi, serta peluang kerjaya profesional mahupun projek bebas (freelance).
+        </p>
+</section>
+<!-- Balanced 2-Column Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- Left Column: Direct Inquiries, Context & Quick FAQ -->
+<div class="lg:col-span-5 space-y-space-lg">
+<!-- Direct Email / Action Card -->
+<div class="bg-surface-container-low p-space-xl rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-space-xs">Saluran Terus</span>
+<h2 class="font-headline-sm text-headline-sm text-primary mb-space-sm">Emel &amp; Telefon</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+              Sesuai untuk sebarang jemputan temuduga, tawaran penulisan, semakan naskhah, atau pertanyaan kolaborasi.
+            </p>
+<!-- Email block -->
+<div class="p-space-md bg-surface-container rounded-lg flex items-center justify-between gap-space-sm mb-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-primary text-xl flex-shrink-0">mail</span>
+<span class="font-label-md text-label-md text-on-surface truncate" id="emailAddress">nashwawanainun0303@gmail.com</span>
+</div>
+<button class="flex-shrink-0 px-space-md py-1.5 bg-surface-container-highest hover:bg-primary-container hover:text-on-primary text-on-surface font-label-sm text-label-sm rounded-lg transition-colors flex items-center gap-1" id="copyEmailBtn" title="Salin Alamat Emel" type="button">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+<span id="copyTextLabel" class="">Salin</span>
+</button>
+</div>
+<!-- Phone / WhatsApp block -->
+<div class="p-space-md bg-surface-container rounded-lg flex items-center justify-between gap-space-sm mb-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-primary text-xl flex-shrink-0">call</span>
+<span class="font-label-md text-label-md text-on-surface truncate">+60 18-780 4575</span>
+</div>
+<a class="flex-shrink-0 px-space-md py-1.5 bg-primary-container text-on-primary hover:bg-tertiary font-label-sm text-label-sm rounded-lg transition-colors flex items-center gap-1" href="https://wa.me/60187804575" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-sm">chat</span>
+<span class="">WhatsApp</span>
+</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-xs">
+<a class="inline-flex items-center justify-center px-space-md py-2.5 bg-primary text-on-primary hover:bg-tertiary font-label-md text-label-md rounded-lg transition-colors shadow-sm" href="mailto:nashwawanainun0303@gmail.com">
+<span class="material-symbols-outlined text-base mr-1.5">outgoing_mail</span>
+                Hantar Emel
+              </a>
+<a class="inline-flex items-center justify-center px-space-md py-2.5 bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md rounded-lg transition-colors border border-outline-variant/40" href="https://portfolioahmadirfan.my.canva.site/wan-ainun-nashwa" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-base mr-1.5">open_in_new</span>
+                Lihat Portfolio
+              </a>
+</div>
+</div>
+<!-- Location & Schedule Status -->
+<div class="bg-surface-container-low p-space-xl rounded-xl shadow-sm space-y-space-md">
+<!-- Availability indicator -->
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined">event_available</span>
+</div>
+<div class="min-w-0 flex-1">
+<span class="font-label-sm text-label-sm text-outline block">Ketersediaan Semasa</span>
+<p class="font-headline-sm text-headline-sm text-primary mt-0.5">Terbuka untuk Peluang Baharu</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                  Terbuka untuk Pekerjaan / Freelance / Kerjasama Penulisan &amp; Komunikasi sepenuh masa mahupun kontrak.
+                </p>
+</div>
+</div>
+<!-- Location with Map preview hint -->
+<div class="pt-space-sm flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined">explore</span>
+</div>
+<div class="min-w-0 flex-1">
+<span class="font-label-sm text-label-sm text-outline block">Pangkalan Operasi</span>
+<p class="font-headline-sm text-headline-sm text-primary mt-0.5">Melaka &amp; Shah Alam, Malaysia</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                  Sedia berkhidmat secara fizikal di kawasan Lembah Klang &amp; Melaka, serta secara fleksibel/jarak jauh (remote).
+                </p>
+</div>
+</div>
+<!-- Stylized Static Mini Map Block -->
+<div class="w-full h-32 rounded-lg bg-surface-container-high overflow-hidden shadow-inner mt-space-sm relative" data-location="Melaka &amp; Shah Alam, Malaysia">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-primary/20 to-transparent flex items-end p-space-md">
+<span class="inline-flex items-center gap-1.5 text-on-primary font-label-sm text-label-sm backdrop-blur-md px-space-sm py-1 rounded bg-inverse-surface/40">
+<span class="material-symbols-outlined text-sm">pin_drop</span>
+                  Melaka Bandar Bersejarah • Shah Alam, Selangor
+                </span>
+</div>
+</div>
+</div>
+<!-- Social Ecosystem & Portfolio Links -->
+<div class="bg-surface-container-low p-space-xl rounded-xl shadow-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-space-sm">Profil &amp; Pautan Rasmi</span>
+<div class="grid grid-cols-2 gap-space-sm">
+<a class="flex items-center gap-space-sm p-space-sm rounded-lg bg-surface hover:bg-surface-container-highest transition-colors group" href="https://portfolioahmadirfan.my.canva.site/wan-ainun-nashwa" rel="noopener noreferrer" target="_blank">
+<span class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-base">auto_stories</span>
+</span>
+<div class="truncate">
+<span class="block font-label-md text-label-md text-on-surface">Canva Portfolio</span>
+<span class="block font-body-sm text-body-sm text-outline">Kompilasi Karya</span>
+</div>
+</a>
+<a class="flex items-center gap-space-sm p-space-sm rounded-lg bg-surface hover:bg-surface-container-highest transition-colors group" href="mailto:nashwawanainun0303@gmail.com" rel="noopener noreferrer">
+<span class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-base">mail</span>
+</span>
+<div class="truncate">
+<span class="block font-label-md text-label-md text-on-surface">Emel Rasmi</span>
+<span class="block font-body-sm text-body-sm text-outline">Hantar Mesej</span>
+</div>
+</a>
+<a class="flex items-center gap-space-sm p-space-sm rounded-lg bg-surface hover:bg-surface-container-highest transition-colors group" href="https://wa.me/60187804575" rel="noopener noreferrer" target="_blank">
+<span class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-base">chat</span>
+</span>
+<div class="truncate">
+<span class="block font-label-md text-label-md text-on-surface">WhatsApp</span>
+<span class="block font-body-sm text-body-sm text-outline">Sembang Pantas</span>
+</div>
+</a>
+<a class="flex items-center gap-space-sm p-space-sm rounded-lg bg-surface hover:bg-surface-container-highest transition-colors group" href="#" rel="noopener noreferrer">
+<span class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-base">badge</span>
+</span>
+<div class="truncate">
+<span class="block font-label-md text-label-md text-on-surface">Resume Digital</span>
+<span class="block font-body-sm text-body-sm text-outline">Profil Eksekutif</span>
+</div>
+</a>
+</div>
+</div>
+<!-- Concise FAQ -->
+<div class="bg-surface-container-low p-space-xl rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-xl">help</span>
+<h3 class="font-headline-sm text-headline-sm">Soalan Lazim Ringkas</h3>
+</div>
+<div class="space-y-space-sm">
+<div class="bg-surface p-space-md rounded-lg">
+<h4 class="font-label-md text-label-md text-on-surface mb-1">Apakah skop penulisan yang boleh ditawarkan?</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Penulisan artikel, esei, naskhah e-book, copywriting promosi, serta pembacaan pruf (proofreading) berketelitian tinggi dalam Bahasa Melayu &amp; Inggeris.</p>
+</div>
+<div class="bg-surface p-space-md rounded-lg">
+<h4 class="font-label-md text-label-md text-on-surface mb-1">Adakah Wan Ainun sedia berkhidmat di luar Melaka?</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ya, saya aktif berulang-alik di antara Melaka dan Shah Alam, serta sedia menyertai projek secara hibrid atau jarak jauh.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Professional Bespoke Inquiry Form -->
+<div class="lg:col-span-7">
+<div class="bg-surface-container-low p-space-xl sm:p-space-2xl rounded-xl shadow-md relative overflow-hidden">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs pb-space-lg mb-space-lg bg-surface-container-low">
+<div>
+<span class="font-label-sm text-label-sm text-secondary font-semibold uppercase tracking-wider block">Borang Penglibatan Projek &amp; Kerjaya</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mt-1">Kongsikan Hasrat Anda</h2>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm bg-surface px-space-md py-1.5 rounded-full shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="">Konsultasi projek percuma</span>
+</div>
+</div>
+<!-- Form Content -->
+<form class="space-y-space-lg" id="contactForm" onsubmit="event.preventDefault(); handleFormSubmit();">
+<!-- Personal Identification Inputs -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="space-y-space-xs">
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-semibold" for="fullName">
+                    Nama Penuh / Wakil Syarikat <span class="text-error">*</span>
+</label>
+<input class="w-full px-space-md py-3 rounded-lg bg-surface text-on-surface font-body-md text-body-md placeholder:text-outline-variant outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_rgba(92,64,51,0.25)] transition-all" id="fullName" name="fullName" placeholder="cth. Puan Sarah / Ahmad" required="" type="text">
+</div>
+<div class="space-y-space-xs">
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-semibold" for="email">
+                    Alamat Emel <span class="text-error">*</span>
+</label>
+<input class="w-full px-space-md py-3 rounded-lg bg-surface text-on-surface font-body-md text-body-md placeholder:text-outline-variant outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_rgba(92,64,51,0.25)] transition-all" id="email" name="email" placeholder="emel@organisasi.com" required="" type="email">
+</div>
+</div>
+<!-- Subject / Service Category Selector tailored to Nashwa's profile -->
+<div class="space-y-space-xs">
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-semibold" for="serviceCategory">
+                  Kategori Perkhidmatan / Skop Kerjasama
+                </label>
+<div class="relative">
+<select class="w-full appearance-none px-space-md py-3 pr-10 rounded-lg bg-surface text-on-surface font-body-md text-body-md outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_rgba(92,64,51,0.25)] transition-all cursor-pointer" id="serviceCategory" name="serviceCategory">
+<option value="content-writing">Penulisan Kandungan (Content Writing &amp; Copywriting)</option>
+<option value="proofreading">Penyuntingan &amp; Pembacaan Pruf (Proofreading/Editing)</option>
+<option value="ebook-creative">Projek E-Book / Promosi Kreatif &amp; Media</option>
+<option value="comm-events">Khidmat Komunikasi / Bantuan Acara &amp; Khidmat Pelanggan</option>
+<option value="job-offer">Tawaran Pekerjaan Tetap / Kontrak Korporat</option>
+<option value="general">Lain-lain / Pertanyaan Kolaborasi</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-3 top-3.5 text-on-surface-variant text-xl">
+                    expand_more
+                  </span>
+</div>
+</div>
+<!-- Mode of Engagement Selector -->
+<div class="space-y-space-xs">
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-semibold">
+                  Mod Kerjasama / Bentuk Tugasan
+                </label>
+<p class="font-body-sm text-body-sm text-outline mb-space-xs">Pilih mod penglibatan yang paling menepati keperluan anda.</p>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs" id="budgetContainer">
+<button class="budget-option px-space-sm py-2.5 rounded-lg text-center font-label-sm text-label-sm bg-primary-container text-on-primary font-bold shadow-sm transition-colors" data-budget="Projek Freelance" onclick="selectBudget(this)" type="button">
+                    Projek Freelance
+                  </button>
+<button class="budget-option px-space-sm py-2.5 rounded-lg text-center font-label-sm text-label-sm bg-surface hover:bg-surface-container-high text-on-surface transition-colors" data-budget="Pekerjaan Tetap" onclick="selectBudget(this)" type="button">
+                    Pekerjaan Tetap
+                  </button>
+<button class="budget-option px-space-sm py-2.5 rounded-lg text-center font-label-sm text-label-sm bg-surface hover:bg-surface-container-high text-on-surface transition-colors" data-budget="Kontrak / Sambilan" onclick="selectBudget(this)" type="button">
+                    Kontrak / Sambilan
+                  </button>
+<button class="budget-option px-space-sm py-2.5 rounded-lg text-center font-label-sm text-label-sm bg-surface hover:bg-surface-container-high text-on-surface transition-colors" data-budget="Kerjasama Kreatif" onclick="selectBudget(this)" type="button">
+                    Kerjasama Kreatif
+                  </button>
+</div>
+<input id="selectedBudget" name="budget" type="hidden" value="Projek Freelance">
+</div>
+<!-- Detailed Message Textarea -->
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-semibold" for="message">
+                    Keterangan Projek / Taklimat Mesej <span class="text-error">*</span>
+</label>
+<span class="font-label-sm text-label-sm text-outline">Bebas &amp; Terperinci</span>
+</div>
+<textarea class="w-full px-space-md py-3 rounded-lg bg-surface text-on-surface font-body-md text-body-md placeholder:text-outline-variant outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_rgba(92,64,51,0.25)] transition-all resize-y" id="message" name="message" placeholder="Ceritakan mengenai skop naskhah, matlamat penulisan, tarikh akhir, atau butiran organisasi anda..." required="" rows="5"></textarea>
+</div>
+<!-- Privacy Notice & Guarantee -->
+<div class="flex items-start gap-space-sm p-space-md bg-surface rounded-lg">
+<span class="material-symbols-outlined text-secondary text-xl flex-shrink-0 mt-0.5">verified_user</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Setiap dokumen draf, idea konsep dan maklumat yang dikongsi sentiasa dilindungi secara beretika dan dihormati penuh kerahsiaan.
+                </p>
+</div>
+<!-- Submit Button & Feedback state -->
+<div class="pt-space-xs">
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-space-sm px-space-xl py-3.5 bg-primary-container text-on-primary font-label-md text-label-md rounded-lg shadow hover:bg-tertiary transition-all focus:outline-none" id="submitBtn" type="submit">
+<span class="material-symbols-outlined text-lg">send</span>
+<span class="">Hantar Mesej</span>
+</button>
+</div>
+<!-- Inline Success Notification (Hidden by default) -->
+<div class="hidden p-space-md rounded-lg bg-surface-container-high text-primary flex items-start gap-space-sm" id="formSuccessAlert">
+<span class="material-symbols-outlined text-xl flex-shrink-0">check_circle</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary mb-1">Mesej Anda Telah Diterima</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Terima kasih atas minat anda. Wan Ainun Nashwa akan meneliti maklumat ini dan menghubungi anda semula dalam masa kurang 24 jam bekerja.</p>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- Trust Metrics & Credentials Bar tailored to Nashwa -->
+<section class="mt-space-3xl pt-space-2xl bg-surface-container-low rounded-2xl p-space-xl md:p-space-2xl">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-space-xl text-center md:text-left">
+<div class="space-y-1">
+<span class="font-display-hero text-display-hero text-primary">3x</span>
+<p class="font-headline-sm text-headline-sm text-on-surface">Anugerah Dekan</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Pencapaian cemerlang dalam bidang akademik dan disiplin penulisan/analisis.</p>
+</div>
+<div class="space-y-1">
+<span class="font-display-hero text-display-hero text-primary">4+ Thn</span>
+<p class="font-headline-sm text-headline-sm text-on-surface">Pengalaman Kerja</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Pengalaman praktikal dalam khidmat pelanggan, fotografi, percetakan &amp; operasi runcit.</p>
+</div>
+<div class="space-y-1">
+<span class="font-display-hero text-display-hero text-primary">MDEC</span>
+<p class="font-headline-sm text-headline-sm text-on-surface">Digital Freelance</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Pensijilan dan bimbingan rasmi inisiatif bakat digital ekonomi gig serantau.</p>
+</div>
+<div class="space-y-1">
+<span class="font-display-hero text-display-hero text-primary">&lt; 24j</span>
+<p class="font-headline-sm text-headline-sm text-on-surface">Masa Tindak Balas</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Maklum balas pantas, komunikasi mesra dan komitmen profesional yang konsisten.</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+<script>
+  // Copy Email Micro-interaction
+  const copyBtn = document.getElementById('copyEmailBtn');
+  const copyLabel = document.getElementById('copyTextLabel');
+  const emailVal = document.getElementById('emailAddress').innerText.trim();
+
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(emailVal).then(() => {
+      copyLabel.innerText = 'Disalin!';
+      copyBtn.classList.add('bg-primary-container', 'text-on-primary');
+      setTimeout(() => {
+        copyLabel.innerText = 'Salin';
+        copyBtn.classList.remove('bg-primary-container', 'text-on-primary');
+      }, 2200);
+    }).catch(() => {
+      copyLabel.innerText = 'Gagal';
+    });
+  });
+
+  // Budget / Mode Selector Logic
+  function selectBudget(selectedEl) {
+    const buttons = document.querySelectorAll('.budget-option');
+    buttons.forEach(btn => {
+      btn.className = 'budget-option px-space-sm py-2.5 rounded-lg text-center font-label-sm text-label-sm bg-surface hover:bg-surface-container-high text-on-surface transition-colors';
+    });
+    selectedEl.className = 'budget-option px-space-sm py-2.5 rounded-lg text-center font-label-sm text-label-sm bg-primary-container text-on-primary font-bold shadow-sm transition-colors';
+    document.getElementById('selectedBudget').value = selectedEl.getAttribute('data-budget');
+  }
+
+  // Form Submission Simulation
+  function handleFormSubmit() {
+    const submitBtn = document.getElementById('submitBtn');
+    const alertBox = document.getElementById('formSuccessAlert');
+    
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="material-symbols-outlined text-lg animate-spin">refresh</span><span>Menghantar...</span>';
+    
+    setTimeout(() => {
+      submitBtn.classList.add('hidden');
+      alertBox.classList.remove('hidden');
+      document.getElementById('contactForm').reset();
+    }, 1200);
+  }
+</script></main><footer class="w-full bg-surface-container-low mt-space-3xl"><div class="max-w-[1240px] mx-auto px-margin-mobile md:px-margin py-space-2xl"><div class="grid grid-cols-1 md:grid-cols-12 gap-space-xl"><div class="md:col-span-5 space-y-space-md"><div class="flex items-center gap-space-sm"><div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-display-hero font-bold text-xs tracking-tight">WN</div><span class="font-headline-sm text-headline-sm text-primary">Wan Ainun Nashwa</span></div><p class="text-on-surface-variant font-body-sm text-body-sm max-w-sm">Penulisan kandungan, penyuntingan naskhah, pembacaan pruf, dan komunikasi kreatif bertaraf teliti berasaskan estetika dan kejelasan mesej.</p></div><div class="md:col-span-4 space-y-space-sm"><h3 class="font-headline-sm text-headline-sm text-primary">Pautan Pantas</h3><ul class="space-y-space-xs font-body-sm text-body-sm"><li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-sm text-on-surface-variant">arrow_forward</span><a class="text-on-surface-variant hover:text-primary transition-colors" data-path="home" href="index.html">Utama (Home)</a></li><li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-sm text-on-surface-variant">arrow_forward</span><a class="text-on-surface-variant hover:text-primary transition-colors" data-path="about-me" href="index.html">Tentang Saya (About)</a></li><li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-sm text-on-surface-variant">arrow_forward</span><a class="text-on-surface-variant hover:text-primary transition-colors" data-path="services" href="#">Perkhidmatan (Services)</a></li><li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-sm text-on-surface-variant">arrow_forward</span><a class="text-on-surface-variant hover:text-primary transition-colors" data-path="portfolio" href="https://portfolioahmadirfan.my.canva.site/wan-ainun-nashwa" target="_blank">Portfolio (Canva)</a></li><li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-sm text-on-surface-variant">arrow_forward</span><a class="text-on-surface-variant hover:text-primary transition-colors" data-path="contact" href="hubungi.html">Hubungi (Contact)</a></li></ul></div><div class="md:col-span-3 space-y-space-sm"><h3 class="font-headline-sm text-headline-sm text-primary">Saluran Perhubungan</h3><p class="text-on-surface-variant font-body-sm text-body-sm">Kekal berhubung melalui emel dan pesanan pantas rasmi.</p><div class="flex items-center gap-space-sm pt-space-xs"><a aria-label="WhatsApp" class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-primary-container hover:text-on-primary transition-all" href="https://wa.me/60187804575" target="_blank"><span class="material-symbols-outlined">chat</span></a><a aria-label="Direct Email" class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-primary-container hover:text-on-primary transition-all" href="mailto:nashwawanainun0303@gmail.com"><span class="material-symbols-outlined">mail</span></a><a aria-label="Canva Portfolio" class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-primary-container hover:text-on-primary transition-all" href="https://portfolioahmadirfan.my.canva.site/wan-ainun-nashwa" target="_blank"><span class="material-symbols-outlined">auto_stories</span></a></div></div></div><div class="mt-space-2xl pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md text-on-surface-variant font-body-sm text-body-sm"><p class="">© 2025 Wan Ainun Nashwa. Hak cipta terpelihara.</p><p class="text-outline">Melaka &amp; Shah Alam, Malaysia.</p></div></div></footer>
+
+
+
+</body></html>

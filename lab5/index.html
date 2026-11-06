@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phoneme Detective: The Sound Mystery of Shah Alam | LG240 UiTM</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Gentium+Plus:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Fredoka', 'sans-serif'],
+                        ipa: ['Gentium Plus', 'serif']
+                    },
+                    colors: {
+                        uitm: {
+                            purple: '#4c1d95',
+                            deep: '#2e1065',
+                            gold: '#fbbf24',
+                            magenta: '#d946ef',
+                            cyan: '#06b6d4',
+                            dark: '#0f0720'
+                        }
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 2s infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'bounce-slight': 'bounceSlight 1.5s infinite'
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 15px rgba(217, 70, 239, 0.4)' },
+                            '50%': { boxShadow: '0 0 30px rgba(217, 70, 239, 0.8)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' }
+                        },
+                        bounceSlight: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-4px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0b0518;
+            background-image: 
+                radial-gradient(at 20% 20%, rgba(76, 29, 149, 0.35) 0px, transparent 50%),
+                radial-gradient(at 80% 80%, rgba(217, 70, 239, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+        .ipa-font { font-family: 'Gentium Plus', serif; }
+        .glass-card {
+            background: rgba(23, 11, 46, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(217, 70, 239, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .glass-gold {
+            background: rgba(251, 191, 36, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0b0518; }
+        ::-webkit-scrollbar-thumb { background: #7e22ce; border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d946ef; }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col justify-between selection:bg-fuchsia-500 selection:text-white">
+
+    <!-- Top Bar Navigation & Stats Header -->
+    <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-purple-800/40 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            
+            <!-- Logo & Title -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="goHome()">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-fuchsia-600 to-purple-800 flex items-center justify-center text-yellow-300 font-black text-xl shadow-lg shadow-fuchsia-950/60 animate-bounce-slight">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <div>
+                    <h1 class="font-display font-bold text-lg text-white leading-none tracking-wide flex items-center gap-2">
+                        PHONEME DETECTIVE
+                        <span class="text-[10px] uppercase font-sans font-extrabold bg-gradient-to-r from-yellow-400 to-amber-500 text-slate-950 px-2 py-0.5 rounded-full">Edutainment</span>
+                    </h1>
+                    <p class="text-xs text-purple-300/80 font-medium mt-0.5">
+                        LG240 • UiTM Shah Alam &bull; <span class="text-fuchsia-300 font-semibold">Designed by Wan Ainun Nashwa</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Stats Bar & Quick Claim Button -->
+            <div id="header-stats" class="flex items-center space-x-2 sm:space-x-3 text-xs font-bold">
+                <!-- XP Badge -->
+                <div class="glass-card px-3 py-1.5 rounded-full flex items-center space-x-2 border-purple-500/40">
+                    <i class="fa-solid fa-bolt text-yellow-400 text-sm animate-pulse"></i>
+                    <span>XP: <span id="stat-xp" class="text-yellow-400 font-mono text-sm">0</span></span>
+                </div>
+
+                <!-- Rank Badge -->
+                <div class="hidden sm:flex glass-card px-3 py-1.5 rounded-full items-center space-x-2 border-fuchsia-500/40">
+                    <i class="fa-solid fa-trophy text-fuchsia-400 text-sm"></i>
+                    <span>Rank: <span id="stat-rank" class="text-fuchsia-300 font-mono">Novice</span></span>
+                </div>
+
+                <!-- Instant Claim Certificate Shortcut -->
+                <button onclick="claimCertificateDirectly()" class="px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500 to-yellow-400 text-purple-950 font-extrabold hover:brightness-110 transition-all flex items-center space-x-1 shadow-md">
+                    <i class="fa-solid fa-certificate"></i>
+                    <span>Claim Certificate</span>
+                </button>
+
+                <!-- Sound Toggle -->
+                <button onclick="toggleAudioFx()" id="btn-sound-toggle" class="p-2 rounded-xl bg-purple-950 border border-purple-700/50 text-slate-300 hover:text-white transition-all">
+                    <i class="fa-solid fa-volume-high text-fuchsia-400" id="sound-icon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN GAME CANVAS & CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 py-6 flex-grow w-full">
+
+        <!-- 0. WELCOME / MISSION DASHBOARD -->
+        <section id="view-welcome" class="space-y-6">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-fuchsia-500/30 relative overflow-hidden shadow-2xl">
+                <!-- Ambient Glow -->
+                <div class="absolute -right-20 -top-20 w-80 h-80 bg-fuchsia-600/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 max-w-3xl space-y-4">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-purple-900/60 border border-fuchsia-500/50 text-fuchsia-300 text-xs font-extrabold tracking-wider uppercase">
+                        <i class="fa-solid fa-graduation-cap text-yellow-400"></i>
+                        <span>UiTM Shah Alam • Applied Language Studies (LG240)</span>
+                    </div>
+
+                    <h2 class="font-display text-3xl sm:text-5xl font-black text-white leading-tight">
+                        The Sound Mystery of Shah Alam
+                    </h2>
+
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Welcome, Detective! A rogue phonological anomaly has altered the speech patterns across the UiTM Shah Alam campus. Step into the laboratory, analyze articulation parameters, decode connected speech processes, and master English stress cadence to restore phonetic equilibrium!
+                    </p>
+
+                    <!-- Student Name Input Bar -->
+                    <div class="pt-2">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-fuchsia-300 mb-1.5">Enter Detective Name (For Certificate):</label>
+                        <div class="flex max-w-md items-center space-x-2">
+                            <div class="relative w-full">
+                                <i class="fa-solid fa-id-card absolute left-3.5 top-3.5 text-purple-400"></i>
+                                <input type="text" id="player-name-input" placeholder="e.g. Nurul Syuhada" value="LG240 Scholar" 
+                                    class="w-full bg-slate-900/90 border border-purple-600 rounded-xl pl-10 pr-4 py-2.5 text-sm text-yellow-300 font-bold focus:outline-none focus:ring-2 focus:ring-fuchsia-500">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mini-Game Level Selection Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
+
+                    <!-- Level 1 Card -->
+                    <div onclick="launchLevel(1)" class="group cursor-pointer glass-card hover:bg-purple-950/80 p-5 rounded-2xl border border-purple-700/50 hover:border-fuchsia-500 transition-all duration-300 transform hover:-translate-y-1.5 shadow-xl">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-900/60 border border-purple-500/40 flex items-center justify-center text-yellow-400 text-xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-flask-vial"></i>
+                            </div>
+                            <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-purple-900 text-purple-200 border border-purple-700">LEVEL 1</span>
+                        </div>
+                        <h3 class="font-display font-bold text-lg text-white group-hover:text-yellow-400 transition-colors">The Articulation Lab</h3>
+                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">Forge IPA symbols by synthesizing Place, Manner, and Voicing parameters in real time.</p>
+                        <div class="mt-4 flex items-center justify-between text-xs font-bold text-fuchsia-400">
+                            <span>Play Laboratory</span>
+                            <i class="fa-solid fa-circle-play group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Level 2 Card -->
+                    <div onclick="launchLevel(2)" class="group cursor-pointer glass-card hover:bg-purple-950/80 p-5 rounded-2xl border border-purple-700/50 hover:border-fuchsia-500 transition-all duration-300 transform hover:-translate-y-1.5 shadow-xl">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-fuchsia-900/60 border border-fuchsia-500/40 flex items-center justify-center text-fuchsia-300 text-xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-diagram-project"></i>
+                            </div>
+                            <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-fuchsia-900 text-fuchsia-200 border border-fuchsia-700">LEVEL 2</span>
+                        </div>
+                        <h3 class="font-display font-bold text-lg text-white group-hover:text-yellow-400 transition-colors">Connected Speech Decoder</h3>
+                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">Analyze real speech audio waveforms to isolate Assimilation, Elision, and Linking 'r'.</p>
+                        <div class="mt-4 flex items-center justify-between text-xs font-bold text-fuchsia-400">
+                            <span>Play Decoder</span>
+                            <i class="fa-solid fa-circle-play group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Level 3 Card -->
+                    <div onclick="launchLevel(3)" class="group cursor-pointer glass-card hover:bg-purple-950/80 p-5 rounded-2xl border border-purple-700/50 hover:border-fuchsia-500 transition-all duration-300 transform hover:-translate-y-1.5 shadow-xl">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-amber-900/60 border border-amber-500/40 flex items-center justify-center text-yellow-400 text-xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-person-running"></i>
+                            </div>
+                            <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-amber-900 text-amber-200 border border-amber-700">LEVEL 3</span>
+                        </div>
+                        <h3 class="font-display font-bold text-lg text-white group-hover:text-yellow-400 transition-colors">Rhythm & Stress Runner</h3>
+                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">Catch correct syllable cadence runes and dodge stress pattern traps in motion.</p>
+                        <div class="mt-4 flex items-center justify-between text-xs font-bold text-fuchsia-400">
+                            <span>Play Stress Runner</span>
+                            <i class="fa-solid fa-circle-play group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Featured Branding Footer Banner -->
+                <div class="mt-8 pt-4 border-t border-purple-900/50 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-400">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span class="font-medium">UiTM Shah Alam • Semester 03 Curriculum Aligned</span>
+                    </div>
+                    <div class="font-extrabold text-fuchsia-400 tracking-wider">
+                        ★ DESIGNED BY WAN AINUN NASHWA ★
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick IPA Sound Reference Palette -->
+            <div class="glass-card rounded-2xl p-5 border border-purple-800/40 space-y-3">
+                <div class="flex items-center justify-between">
+                    <h4 class="font-display font-bold text-sm text-yellow-400 flex items-center gap-2">
+                        <i class="fa-solid fa-keyboard"></i> Interactive IPA Pronunciation Keyboard (Web Audio Speech)
+                    </h4>
+                    <span class="text-[11px] text-slate-400">Click symbol to hear standard RP sound</span>
+                </div>
+                <div class="flex flex-wrap gap-2" id="quick-ipa-keyboard">
+                    <!-- Dynamic IPA keys inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. LEVEL 1: THE ARTICULATION LAB (SYNTHESIZER PUZZLE) -->
+        <section id="view-level-1" class="hidden space-y-6">
+            <div class="glass-card rounded-2xl p-4 sm:p-6 border border-purple-800/40 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-fuchsia-400 uppercase tracking-wider">Level 1 • Articulation Synthesizer</span>
+                    <h2 class="font-display text-xl sm:text-2xl font-bold text-white">Forge The Sound Rune</h2>
+                </div>
+                <button onclick="goHome()" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold border border-slate-700">
+                    <i class="fa-solid fa-house mr-1"></i> Hub
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Controls Side Panel -->
+                <div class="lg:col-span-7 glass-card rounded-2xl p-6 border border-purple-800/40 space-y-5">
+                    <div class="bg-purple-950/60 border border-purple-700/50 p-4 rounded-xl">
+                        <span class="text-xs font-bold text-yellow-400 uppercase tracking-widest block mb-1">Target Mission Prompt:</span>
+                        <p id="l1-target-prompt" class="text-base font-bold text-white leading-relaxed">
+                            Configure the lab parameters to produce: <span class="text-yellow-300 font-extrabold font-mono">/ð/</span> (as in "this")
+                        </p>
+                    </div>
+
+                    <!-- Parameter 1: Voicing -->
+                    <div class="space-y-2">
+                        <label class="block text-xs font-extrabold uppercase text-fuchsia-300">1. Voicing State:</label>
+                        <div class="grid grid-cols-2 gap-3" id="l1-voicing-options">
+                            <!-- Buttons generated JS -->
+                        </div>
+                    </div>
+
+                    <!-- Parameter 2: Place -->
+                    <div class="space-y-2">
+                        <label class="block text-xs font-extrabold uppercase text-fuchsia-300">2. Place of Articulation:</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="l1-place-options">
+                            <!-- Buttons generated JS -->
+                        </div>
+                    </div>
+
+                    <!-- Parameter 3: Manner -->
+                    <div class="space-y-2">
+                        <label class="block text-xs font-extrabold uppercase text-fuchsia-300">3. Manner of Articulation:</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="l1-manner-options">
+                            <!-- Buttons generated JS -->
+                        </div>
+                    </div>
+
+                    <!-- Action Forge Button -->
+                    <button onclick="verifyL1Synthesis()" class="w-full py-3.5 bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:from-fuchsia-500 hover:to-purple-500 font-display font-bold text-white rounded-xl shadow-lg shadow-fuchsia-950/60 flex items-center justify-center space-x-2 text-base transition-all">
+                        <i class="fa-solid fa-hammer"></i>
+                        <span>Synthesize Sound Rune</span>
+                    </button>
+                </div>
+
+                <!-- Visual Synthesizer Feedback Side -->
+                <div class="lg:col-span-5 glass-card rounded-2xl p-6 border border-purple-800/40 flex flex-col justify-between space-y-4 text-center">
+                    <div>
+                        <span class="text-xs font-bold text-purple-300 uppercase tracking-wider block mb-2">Live Articulatory Chamber</span>
+                        <!-- Visual Chamber Box -->
+                        <div class="w-40 h-40 mx-auto rounded-3xl bg-slate-900/90 border-2 border-fuchsia-500/50 flex flex-col items-center justify-center relative shadow-inner animate-pulse-glow">
+                            <span id="l1-chamber-symbol" class="ipa-font text-6xl font-bold text-yellow-400">?</span>
+                            <span id="l1-chamber-label" class="text-[11px] text-purple-300 font-mono mt-2">Waiting...</span>
+                        </div>
+                    </div>
+
+                    <!-- Selected Combo Breakdown -->
+                    <div class="bg-slate-900/80 p-4 rounded-xl border border-purple-900/60 text-xs space-y-1.5 text-left">
+                        <div class="text-slate-400">Current Chamber Configuration:</div>
+                        <div class="font-semibold text-fuchsia-300" id="l1-combo-text">Voiceless • Bilabial • Plosive</div>
+                    </div>
+
+                    <!-- Feedback Box -->
+                    <div id="l1-feedback" class="hidden p-3.5 rounded-xl text-xs font-bold leading-relaxed border"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. LEVEL 2: CONNECTED SPEECH DECODER -->
+        <section id="view-level-2" class="hidden space-y-6">
+            <div class="glass-card rounded-2xl p-4 sm:p-6 border border-purple-800/40 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-fuchsia-400 uppercase tracking-wider">Level 2 • Phonological Decoder</span>
+                    <h2 class="font-display text-xl sm:text-2xl font-bold text-white">Analyze Connected Speech</h2>
+                </div>
+                <button onclick="goHome()" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold border border-slate-700">
+                    <i class="fa-solid fa-house mr-1"></i> Hub
+                </button>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 sm:p-8 border border-purple-800/40 space-y-6">
+                <!-- Utterance Audio Card -->
+                <div class="bg-slate-900/90 border border-purple-700/60 p-5 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="space-y-1 text-center sm:text-left">
+                        <span class="text-xs font-bold text-fuchsia-400 uppercase tracking-wider">Audio Utterance Sample:</span>
+                        <h3 id="l2-sentence-text" class="text-xl sm:text-2xl font-bold text-white">"That girl" &rarr; /ðæk ɡɜːl/</h3>
+                        <p class="text-xs text-slate-400">Observe how the underlying phoneme shifts during rapid natural speech.</p>
+                    </div>
+
+                    <button onclick="speakL2Utterance()" class="flex-shrink-0 px-5 py-3 rounded-xl bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-bold text-sm shadow-lg flex items-center space-x-2 transition-all">
+                        <i class="fa-solid fa-circle-play text-lg text-yellow-300"></i>
+                        <span>Listen Audio Sample</span>
+                    </button>
+                </div>
+
+                <!-- Animated Audio Waveform Graphic Mock -->
+                <div class="bg-purple-950/40 border border-purple-800/40 rounded-xl p-4 flex items-center justify-center space-x-1 h-20 overflow-hidden" id="l2-waveform">
+                    <!-- Bars inserted JS -->
+                </div>
+
+                <!-- Decoder Challenge Prompt -->
+                <div class="space-y-3">
+                    <h4 class="font-display font-bold text-base text-yellow-400">Which phonological process is taking place here?</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="l2-options-grid">
+                        <!-- Options injected JS -->
+                    </div>
+                </div>
+
+                <!-- Feedback Box -->
+                <div id="l2-feedback" class="hidden p-4 rounded-xl text-xs sm:text-sm font-semibold border leading-relaxed"></div>
+            </div>
+        </section>
+
+        <!-- 3. LEVEL 3: RHYTHM RUNNER / STRESS MAZE (CANVAS MINI-GAME) -->
+        <section id="view-level-3" class="hidden space-y-6">
+            <div class="glass-card rounded-2xl p-4 sm:p-6 border border-purple-800/40 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">Level 3 • Rhythm & Stress Runner</span>
+                    <h2 class="font-display text-xl sm:text-2xl font-bold text-white">Collect Correct Syllable Stress Runes</h2>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button onclick="skipLevel3ToVictory()" class="px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/40 text-yellow-300 font-bold border border-amber-500/40 text-xs">
+                        <i class="fa-solid fa-forward text-yellow-400 mr-1"></i> Fast Complete
+                    </button>
+                    <button onclick="goHome()" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold border border-slate-700">
+                        <i class="fa-solid fa-house mr-1"></i> Hub
+                    </button>
+                </div>
+            </div>
+
+            <!-- Canvas Game Box -->
+            <div class="glass-card rounded-2xl p-4 border border-purple-800/40 space-y-4">
+                <div class="flex flex-wrap items-center justify-between text-xs font-bold bg-slate-900/90 px-4 py-2.5 rounded-xl border border-purple-900 gap-2">
+                    <div class="text-fuchsia-300">Target Word: <span id="l3-target-word" class="text-yellow-300 text-base font-mono">photographer</span></div>
+                    <div class="text-purple-300">Primary Stress: <span id="l3-target-stress" class="text-emerald-400 font-mono">2nd Syllable (/fəˈtɒɡ.rə.fər/)</span></div>
+                    <div>Score Progress: <span id="l3-score" class="text-yellow-400 font-mono text-sm">0/5 Runes</span></div>
+                </div>
+
+                <!-- Interactive Arcade Canvas -->
+                <div class="relative w-full aspect-[16/9] max-h-[420px] bg-slate-950 rounded-xl overflow-hidden border border-purple-700/50 shadow-inner">
+                    <canvas id="runner-canvas" class="w-full h-full block"></canvas>
+
+                    <!-- Touch Controls overlay -->
+                    <div class="absolute bottom-3 left-3 right-3 flex justify-between pointer-events-none">
+                        <div class="flex space-x-2 pointer-events-auto">
+                            <button id="btn-touch-left" class="w-12 h-12 rounded-xl bg-purple-900/80 border border-fuchsia-500/80 text-white font-bold text-lg active:bg-fuchsia-600 flex items-center justify-center shadow-lg">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </button>
+                            <button id="btn-touch-right" class="w-12 h-12 rounded-xl bg-purple-900/80 border border-fuchsia-500/80 text-white font-bold text-lg active:bg-fuchsia-600 flex items-center justify-center shadow-lg">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <button id="btn-touch-jump" class="pointer-events-auto px-4 h-12 rounded-xl bg-amber-500/90 border border-yellow-300 text-purple-950 font-black text-sm active:bg-yellow-400 flex items-center justify-center shadow-lg">
+                            <i class="fa-solid fa-angles-up mr-1"></i> JUMP
+                        </button>
+                    </div>
+                </div>
+
+                <p class="text-xs text-slate-400 text-center">Controls: Use <kbd class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-purple-300 font-mono">← / →</kbd> or <kbd class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-purple-300 font-mono">A / D</kbd> to move, <kbd class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-purple-300 font-mono">Space / ↑</kbd> to Jump, or use the on-screen buttons!</p>
+            </div>
+        </section>
+
+        <!-- 4. VICTORY & CERTIFICATE OF MASTERY MODAL -->
+        <section id="view-certificate" class="hidden space-y-6">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-yellow-500/40 text-center space-y-6 relative overflow-hidden shadow-2xl">
+                <!-- Golden Glow -->
+                <div class="absolute inset-0 bg-gradient-to-b from-yellow-500/10 via-transparent to-purple-900/20 pointer-events-none"></div>
+
+                <div class="inline-block p-4 rounded-full bg-purple-950 border-2 border-yellow-400 shadow-xl shadow-yellow-500/20 animate-bounce-slight">
+                    <i class="fa-solid fa-award text-5xl text-yellow-400"></i>
+                </div>
+
+                <div>
+                    <span class="text-xs font-extrabold uppercase px-3 py-1 rounded-full bg-yellow-500/20 text-yellow-300 border border-yellow-500/40">Official Assessment Completed</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-black text-white mt-2">Master Phonetics Scholar!</h2>
+                    <p class="text-xs sm:text-sm text-slate-300 mt-1">UiTM Shah Alam • Faculty of Academy of Language Studies (LG240)</p>
+                </div>
+
+                <!-- Printable Certificate Printable Card -->
+                <div id="printable-certificate" class="max-w-2xl mx-auto glass-gold p-8 rounded-2xl border-2 border-yellow-400/60 text-slate-900 bg-gradient-to-br from-amber-50 via-purple-50 to-amber-100 shadow-2xl relative text-left space-y-4">
+                    <div class="flex items-center justify-between border-b border-amber-900/20 pb-4">
+                        <div>
+                            <div class="text-xs font-black uppercase text-purple-900 tracking-widest">Universiti Teknologi MARA (UiTM) Shah Alam</div>
+                            <div class="text-[10px] text-purple-700 font-bold">LG240 • Bachelor of Applied Language Studies</div>
+                        </div>
+                        <i class="fa-solid fa-shield-halved text-3xl text-purple-900"></i>
+                    </div>
+
+                    <div class="text-center py-4 space-y-2">
+                        <p class="text-xs uppercase tracking-widest font-bold text-slate-600">This Certificate of Educational Mastery is awarded to</p>
+                        <h3 id="cert-student-name" class="font-display text-3xl font-black text-purple-950 underline decoration-yellow-500 decoration-2">Nurul Syuhada</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed max-w-lg mx-auto mt-2">
+                            for demonstrating exceptional proficiency in English Phonetics, Articulation Parameters, IPA Phonemic Transcription, and Connected Speech Processes.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 pt-4 border-t border-amber-900/20 text-xs">
+                        <div>
+                            <span class="text-[10px] text-slate-500 uppercase font-bold block">Final XP Score</span>
+                            <span id="cert-xp-score" class="font-mono font-black text-purple-950 text-base">750 XP</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-[10px] text-slate-500 uppercase font-bold block">Course Lead / Designer</span>
+                            <span class="font-bold text-purple-950">Designed by Wan Ainun Nashwa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+                    <button onclick="window.print()" class="px-6 py-3 rounded-xl bg-yellow-500 hover:bg-yellow-400 text-purple-950 font-display font-bold text-sm shadow-lg flex items-center space-x-2 transition-all">
+                        <i class="fa-solid fa-print"></i>
+                        <span>Print Certificate</span>
+                    </button>
+                    <button onclick="goHome()" class="px-6 py-3 rounded-xl bg-purple-950 hover:bg-purple-900 border border-purple-700 text-white font-display font-bold text-sm transition-all">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> Play Again
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER WITH MANDATORY BRANDING -->
+    <footer class="border-t border-purple-900/50 bg-slate-950 py-4 text-center text-xs text-slate-400 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div>
+                <strong class="text-purple-300">Phoneme Detective: The Sound Mystery of Shah Alam</strong> &bull; LG240 Edutainment
+            </div>
+            <div class="font-extrabold text-fuchsia-400 tracking-wider">
+                DESIGNED BY WAN AINUN NASHWA
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT GAME ENGINE -->
+    <script>
+        // --- SOUND SYNTHESIZER (WEB AUDIO API - NO EXTERNAL ASSETS) ---
+        let audioCtx = null;
+        let soundEnabled = true;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playTone(freq, type = 'sine', duration = 0.15) {
+            if (!soundEnabled) return;
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {}
+        }
+
+        function playSuccessSound() {
+            playTone(523.25, 'triangle', 0.1);
+            setTimeout(() => playTone(659.25, 'triangle', 0.1), 100);
+            setTimeout(() => playTone(783.99, 'triangle', 0.2), 200);
+        }
+
+        function playErrorSound() {
+            playTone(220, 'sawtooth', 0.15);
+            setTimeout(() => playTone(180, 'sawtooth', 0.25), 120);
+        }
+
+        function toggleAudioFx() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('sound-icon');
+            if (soundEnabled) {
+                icon.className = 'fa-solid fa-volume-high text-fuchsia-400';
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark text-slate-500';
+            }
+        }
+
+        // --- WEB SPEECH API (PRONUNCIATION SYNTHESIS) ---
+        function speakIPA(symbolOrWord) {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            const clean = symbolOrWord.replace(/[\/ˈˌ]/g, '');
+            const utter = new SpeechSynthesisUtterance(clean);
+            utter.lang = 'en-GB'; // Received Pronunciation standard
+            utter.rate = 0.85;
+            window.speechSynthesis.speak(utter);
+        }
+
+        // --- GAME STATE ---
+        let gameState = {
+            playerName: 'LG240 Scholar',
+            xp: 0,
+            currentLevel: 0,
+            completedLevels: new Set(),
+            // Level 1 State
+            l1Index: 0,
+            l1SelectedVoicing: 'Voiced',
+            l1SelectedPlace: 'Dental',
+            l1SelectedManner: 'Fricative',
+            // Level 2 State
+            l2Index: 0,
+            // Level 3 Arcade State
+            l3Index: 0,
+            l3Score: 0
+        };
+
+        // --- DATA BANKS ---
+        const ipaPalette = ['ə', 'θ', 'ð', 'ʃ', 'ʒ', 'tʃ', 'dʒ', 'ŋ', 'æ', 'ʌ', 'ɒ', 'ɜː', 'iː', 'uː', 'ɔː', 'ɑː', 'ɪ', 'ʊ', 'eɪ', 'aɪ', 'ɔɪ', 'əʊ', 'aʊ'];
+
+        const l1Missions = [
+            {
+                targetSymbol: '/ð/',
+                targetLabel: 'Voiced Dental Fricative',
+                targetWord: 'this',
+                voicing: 'Voiced',
+                place: 'Dental',
+                manner: 'Fricative',
+                explanation: '/ð/ is Voiced, produced with tongue against upper teeth (Dental), releasing friction airflow (Fricative).'
+            },
+            {
+                targetSymbol: '/ŋ/',
+                targetLabel: 'Voiced Velar Nasal',
+                targetWord: 'sing',
+                voicing: 'Voiced',
+                place: 'Velar',
+                manner: 'Nasal',
+                explanation: '/ŋ/ is Voiced, back of tongue against soft palate (Velar), with air escaping through nasal cavity (Nasal).'
+            },
+            {
+                targetSymbol: '/tʃ/',
+                targetLabel: 'Voiceless Post-Alveolar Affricates',
+                targetWord: 'church',
+                voicing: 'Voiceless',
+                place: 'Post-Alveolar',
+                manner: 'Affricate',
+                explanation: '/tʃ/ begins as a plosive stop at post-alveolar ridge and releases as a fricative (Affricate).'
+            }
+        ];
+
+        const l2Missions = [
+            {
+                sentence: '"that girl"',
+                transcription: '/ðæk ɡɜːl/',
+                correctProcess: 'Regressive Place Assimilation',
+                options: ['Regressive Place Assimilation', 'Elision', 'Linking /r/', 'Coalescence'],
+                explanation: 'The alveolar plosive /t/ changes to velar /k/ before the velar sound /ɡ/ in "girl".'
+            },
+            {
+                sentence: '"next door"',
+                transcription: '/neks dɔː/',
+                correctProcess: 'Elision of /t/',
+                options: ['Elision of /t/', 'Coalescence', 'Intrusive /r/', 'Voicing Assimilation'],
+                explanation: 'The alveolar plosive /t/ is omitted (elided) between consonants in rapid stream.'
+            },
+            {
+                sentence: '"law and order"',
+                transcription: '/lɔːr ən ɔːdə/',
+                correctProcess: 'Intrusive /r/',
+                options: ['Intrusive /r/', 'Elision', 'Nasalization', 'De-voicing'],
+                explanation: 'An unwritten /r/ sound is inserted between two vowel sounds across word boundaries.'
+            }
+        ];
+
+        const l3Missions = [
+            { word: 'photographer', correctStress: 2, label: '2nd Syllable (/fəˈtɒɡ.rə.fər/)' },
+            { word: 'academic', correctStress: 3, label: '3rd Syllable (/ˌæk.əˈdem.ɪk/)' },
+            { word: 'linguistics', correctStress: 2, label: '2nd Syllable (/lɪŋˈɡwɪs.tɪks/)' }
+        ];
+
+        // --- NAVIGATION & VIEWS ---
+        function showView(viewId) {
+            ['view-welcome', 'view-level-1', 'view-level-2', 'view-level-3', 'view-certificate'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(viewId).classList.remove('hidden');
+
+            const statsHeader = document.getElementById('header-stats');
+            if (viewId === 'view-welcome') {
+                statsHeader.classList.add('hidden');
+            } else {
+                statsHeader.classList.remove('hidden');
+            }
+        }
+
+        function goHome() {
+            showView('view-welcome');
+            checkVictoryCondition();
+        }
+
+        function updateXP(amount) {
+            gameState.xp += amount;
+            document.getElementById('stat-xp').textContent = gameState.xp;
+
+            // Update Rank
+            let rank = 'Novice';
+            if (gameState.xp >= 600) rank = 'Master Scholar';
+            else if (gameState.xp >= 300) rank = 'Phonetician';
+            else if (gameState.xp >= 150) rank = 'Sound Investigator';
+            document.getElementById('stat-rank').textContent = rank;
+        }
+
+        // --- INITIALIZATION ---
+        window.onload = function() {
+            renderQuickKeyboard();
+            renderL2Waveform();
+        };
+
+        function renderQuickKeyboard() {
+            const kb = document.getElementById('quick-ipa-keyboard');
+            kb.innerHTML = '';
+            ipaPalette.forEach(symbol => {
+                const btn = document.createElement('button');
+                btn.className = 'px-3 py-1.5 rounded-lg bg-purple-950/80 hover:bg-fuchsia-600 border border-purple-700/50 font-ipa font-bold text-yellow-300 text-sm transition-all hover:scale-105';
+                btn.textContent = symbol;
+                btn.onclick = () => {
+                    playTone(440, 'sine', 0.08);
+                    speakIPA(symbol);
+                };
+                kb.appendChild(btn);
+            });
+        }
+
+        function launchLevel(levelNum) {
+            const nameInput = document.getElementById('player-name-input').value.trim();
+            if (nameInput) gameState.playerName = nameInput;
+
+            gameState.currentLevel = levelNum;
+            if (levelNum === 1) {
+                setupLevel1();
+                showView('view-level-1');
+            } else if (levelNum === 2) {
+                setupLevel2();
+                showView('view-level-2');
+            } else if (levelNum === 3) {
+                setupLevel3Arcade();
+                showView('view-level-3');
+            }
+        }
+
+        // --- LEVEL 1 ENGINE ---
+        function setupLevel1() {
+            const mission = l1Missions[gameState.l1Index];
+            document.getElementById('l1-target-prompt').innerHTML = 
+                `Configure parameters to produce: <span class="text-yellow-300 font-extrabold font-mono">${mission.targetSymbol}</span> (as in "${mission.targetWord}")`;
+
+            // Voicing Buttons
+            const vContainer = document.getElementById('l1-voicing-options');
+            vContainer.innerHTML = '';
+            ['Voiced', 'Voiceless'].forEach(v => {
+                const btn = document.createElement('button');
+                btn.className = `p-2.5 rounded-xl border text-xs font-bold transition-all ${gameState.l1SelectedVoicing === v ? 'bg-fuchsia-600 border-fuchsia-400 text-white shadow-lg' : 'bg-slate-900 border-purple-800 text-slate-300'}`;
+                btn.textContent = v;
+                btn.onclick = () => {
+                    gameState.l1SelectedVoicing = v;
+                    setupLevel1();
+                };
+                vContainer.appendChild(btn);
+            });
+
+            // Place Buttons
+            const places = ['Bilabial', 'Dental', 'Alveolar', 'Post-Alveolar', 'Velar', 'Glottal'];
+            const pContainer = document.getElementById('l1-place-options');
+            pContainer.innerHTML = '';
+            places.forEach(p => {
+                const btn = document.createElement('button');
+                btn.className = `p-2 rounded-xl border text-xs font-bold transition-all ${gameState.l1SelectedPlace === p ? 'bg-fuchsia-600 border-fuchsia-400 text-white shadow-lg' : 'bg-slate-900 border-purple-800 text-slate-300'}`;
+                btn.textContent = p;
+                btn.onclick = () => {
+                    gameState.l1SelectedPlace = p;
+                    setupLevel1();
+                };
+                pContainer.appendChild(btn);
+            });
+
+            // Manner Buttons
+            const manners = ['Plosive', 'Fricative', 'Affricate', 'Nasal', 'Approximant'];
+            const mContainer = document.getElementById('l1-manner-options');
+            mContainer.innerHTML = '';
+            manners.forEach(m => {
+                const btn = document.createElement('button');
+                btn.className = `p-2 rounded-xl border text-xs font-bold transition-all ${gameState.l1SelectedManner === m ? 'bg-fuchsia-600 border-fuchsia-400 text-white shadow-lg' : 'bg-slate-900 border-purple-800 text-slate-300'}`;
+                btn.textContent = m;
+                btn.onclick = () => {
+                    gameState.l1SelectedManner = m;
+                    setupLevel1();
+                };
+                mContainer.appendChild(btn);
+            });
+
+            document.getElementById('l1-combo-text').textContent = `${gameState.l1SelectedVoicing} • ${gameState.l1SelectedPlace} • ${gameState.l1SelectedManner}`;
+        }
+
+        function verifyL1Synthesis() {
+            const m = l1Missions[gameState.l1Index];
+            const feedback = document.getElementById('l1-feedback');
+            feedback.classList.remove('hidden', 'bg-emerald-950/80', 'border-emerald-500', 'text-emerald-200', 'bg-rose-950/80', 'border-rose-500', 'text-rose-200');
+
+            if (gameState.l1SelectedVoicing === m.voicing &&
+                gameState.l1SelectedPlace === m.place &&
+                gameState.l1SelectedManner === m.manner) {
+                
+                playSuccessSound();
+                document.getElementById('l1-chamber-symbol').textContent = m.targetSymbol;
+                document.getElementById('l1-chamber-label').textContent = m.targetLabel;
+                speakIPA(m.targetSymbol);
+
+                feedback.classList.add('bg-emerald-950/80', 'border-emerald-500', 'text-emerald-200');
+                feedback.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i> <strong>Rune Forged! (+100 XP)</strong> ${m.explanation}`;
+                updateXP(100);
+
+                setTimeout(() => {
+                    if (gameState.l1Index < l1Missions.length - 1) {
+                        gameState.l1Index++;
+                        setupLevel1();
+                    } else {
+                        gameState.completedLevels.add(1);
+                        alert('Level 1 Mastered! Returning to Hub.');
+                        goHome();
+                    }
+                }, 2200);
+
+            } else {
+                playErrorSound();
+                feedback.classList.add('bg-rose-950/80', 'border-rose-500', 'text-rose-200');
+                feedback.innerHTML = `<i class="fa-solid fa-circle-xmark text-rose-400 mr-1"></i> Incorrect configuration. Review place & manner parameters!`;
+            }
+        }
+
+        // --- LEVEL 2 ENGINE ---
+        function renderL2Waveform() {
+            const wf = document.getElementById('l2-waveform');
+            wf.innerHTML = '';
+            for (let i = 0; i < 32; i++) {
+                const bar = document.createElement('div');
+                const h = Math.floor(Math.random() * 45) + 10;
+                bar.className = 'w-1.5 rounded-full bg-gradient-to-t from-purple-600 to-fuchsia-400 animate-pulse';
+                bar.style.height = `${h}px`;
+                bar.style.animationDelay = `${(i * 0.05).toFixed(2)}s`;
+                wf.appendChild(bar);
+            }
+        }
+
+        function setupLevel2() {
+            const m = l2Missions[gameState.l2Index];
+            document.getElementById('l2-sentence-text').innerHTML = `${m.sentence} &rarr; <span class="text-yellow-300 font-mono">${m.transcription}</span>`;
+
+            const grid = document.getElementById('l2-options-grid');
+            grid.innerHTML = '';
+            m.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'p-4 rounded-xl bg-slate-900 hover:bg-purple-900/80 border border-purple-800/60 hover:border-fuchsia-500 text-left font-bold text-slate-200 text-sm transition-all flex items-center justify-between group';
+                btn.innerHTML = `
+                    <span>${opt}</span>
+                    <i class="fa-regular fa-circle text-slate-600 group-hover:text-fuchsia-400"></i>
+                `;
+                btn.onclick = () => verifyL2Answer(opt, btn);
+                grid.appendChild(btn);
+            });
+
+            document.getElementById('l2-feedback').classList.add('hidden');
+        }
+
+        function speakL2Utterance() {
+            const m = l2Missions[gameState.l2Index];
+            speakIPA(m.sentence);
+        }
+
+        function verifyL2Answer(selectedOpt, btnElement) {
+            const m = l2Missions[gameState.l2Index];
+            const feedback = document.getElementById('l2-feedback');
+            feedback.classList.remove('hidden', 'bg-emerald-950/80', 'border-emerald-500', 'text-emerald-200', 'bg-rose-950/80', 'border-rose-500', 'text-rose-200');
+
+            if (selectedOpt === m.correctProcess) {
+                playSuccessSound();
+                updateXP(120);
+                feedback.classList.add('bg-emerald-950/80', 'border-emerald-500', 'text-emerald-200');
+                feedback.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i> <strong>Decoded! (+120 XP)</strong> ${m.explanation}`;
+
+                setTimeout(() => {
+                    if (gameState.l2Index < l2Missions.length - 1) {
+                        gameState.l2Index++;
+                        setupLevel2();
+                    } else {
+                        gameState.completedLevels.add(2);
+                        alert('Level 2 Mastered! Returning to Hub.');
+                        goHome();
+                    }
+                }, 2200);
+            } else {
+                playErrorSound();
+                feedback.classList.add('bg-rose-950/80', 'border-rose-500', 'text-rose-200');
+                feedback.innerHTML = `<i class="fa-solid fa-circle-xmark text-rose-400 mr-1"></i> Incorrect process! Listen closely to sound boundary changes.`;
+            }
+        }
+
+        // --- LEVEL 3 ENGINE (ARCADE CANVAS RUNNER) ---
+        let canvas, ctx;
+        let player = { 
+            x: 200, 
+            y: 300, 
+            width: 36, 
+            height: 44, 
+            speed: 7, 
+            vy: 0, 
+            gravity: 0.6, 
+            isJumping: false, 
+            groundY: 300 
+        };
+        let fallingOrbs = [];
+        let gameLoopReq = null;
+
+        function setupLevel3Arcade() {
+            canvas = document.getElementById('runner-canvas');
+            if (!canvas) return;
+            ctx = canvas.getContext('2d');
+            
+            // Adjust canvas resolution dynamically based on wrapper width
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width || 800;
+            canvas.height = rect.height || 450;
+
+            player.groundY = canvas.height - 60;
+            player.x = canvas.width / 2 - 18;
+            player.y = player.groundY;
+            player.vy = 0;
+            player.isJumping = false;
+
+            const m = l3Missions[gameState.l3Index];
+            document.getElementById('l3-target-word').textContent = m.word;
+            document.getElementById('l3-target-stress').textContent = m.label;
+            document.getElementById('l3-score').textContent = `${gameState.l3Score}/5 Runes`;
+
+            fallingOrbs = [];
+            spawnOrbs();
+
+            if (gameLoopReq) cancelAnimationFrame(gameLoopReq);
+            gameLoop();
+        }
+
+        // Key listeners
+        let keys = {};
+        window.addEventListener('keydown', e => {
+            keys[e.code] = true;
+            if (['Space', 'ArrowUp', 'KeyW'].includes(e.code) && !player.isJumping && gameState.currentLevel === 3) {
+                player.vy = -13;
+                player.isJumping = true;
+                playTone(587.33, 'sine', 0.1);
+            }
+        });
+        window.addEventListener('keyup', e => keys[e.code] = false);
+
+        // Touch Listeners
+        const attachTouch = (id, keyName) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.addEventListener('touchstart', e => { e.preventDefault(); keys[keyName] = true; });
+            el.addEventListener('touchend', e => { e.preventDefault(); keys[keyName] = false; });
+            el.addEventListener('mousedown', e => { keys[keyName] = true; });
+            el.addEventListener('mouseup', e => { keys[keyName] = false; });
+        };
+        attachTouch('btn-touch-left', 'ArrowLeft');
+        attachTouch('btn-touch-right', 'ArrowRight');
+        
+        const jumpBtn = document.getElementById('btn-touch-jump');
+        if (jumpBtn) {
+            const handleJump = (e) => {
+                if (e) e.preventDefault();
+                if (!player.isJumping && gameState.currentLevel === 3) {
+                    player.vy = -13;
+                    player.isJumping = true;
+                    playTone(587.33, 'sine', 0.1);
+                }
+            };
+            jumpBtn.addEventListener('touchstart', handleJump);
+            jumpBtn.addEventListener('click', handleJump);
+        }
+
+        function spawnOrbs() {
+            const m = l3Missions[gameState.l3Index];
+            fallingOrbs = [];
+            // Spawn 3 lanes of falling orbs
+            const laneWidth = canvas.width / 3;
+            for (let i = 0; i < 3; i++) {
+                const isCorrect = (i === 0);
+                const stressVal = isCorrect ? m.correctStress : (m.correctStress === 1 ? 2 : 1);
+                fallingOrbs.push({
+                    x: laneWidth * i + laneWidth / 2,
+                    y: -Math.random() * 250 - 40,
+                    radius: 22,
+                    syllable: `${stressVal}${stressVal === 1 ? 'st' : stressVal === 2 ? 'nd' : 'rd'} Stress`,
+                    isCorrect: isCorrect,
+                    speed: 2.2 + Math.random() * 1.5
+                });
+            }
+        }
+
+        function gameLoop() {
+            if (gameState.currentLevel !== 3) return;
+
+            // Clear Canvas
+            ctx.fillStyle = '#0b0518';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Ground Line
+            ctx.strokeStyle = '#9333ea';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(0, player.groundY + player.height);
+            ctx.lineTo(canvas.width, player.groundY + player.height);
+            ctx.stroke();
+
+            // Gridlines visual
+            ctx.strokeStyle = 'rgba(147, 51, 234, 0.12)';
+            ctx.lineWidth = 1;
+            for (let x = 0; x < canvas.width; x += 40) {
+                ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+            }
+
+            // Move Player Horizontal
+            if ((keys['ArrowLeft'] || keys['KeyA']) && player.x > 10) player.x -= player.speed;
+            if ((keys['ArrowRight'] || keys['KeyD']) && player.x < canvas.width - player.width - 10) player.x += player.speed;
+
+            // Apply Jump / Physics
+            player.y += player.vy;
+            player.vy += player.gravity;
+
+            if (player.y >= player.groundY) {
+                player.y = player.groundY;
+                player.vy = 0;
+                player.isJumping = false;
+            }
+
+            // Draw Player Detective Avatar
+            ctx.fillStyle = '#d946ef';
+            ctx.shadowColor = '#d946ef';
+            ctx.shadowBlur = 12;
+            ctx.beginPath();
+            ctx.roundRect(player.x, player.y, player.width, player.height, 10);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 20px font-sans';
+            ctx.textAlign = 'center';
+            ctx.fillText('🕵️', player.x + player.width / 2, player.y + 28);
+
+            // Draw and update Orbs
+            fallingOrbs.forEach((orb) => {
+                orb.y += orb.speed;
+
+                // Orb Glow & Body
+                ctx.beginPath();
+                ctx.arc(orb.x, orb.y, orb.radius, 0, Math.PI * 2);
+                ctx.fillStyle = orb.isCorrect ? 'rgba(16, 185, 129, 0.85)' : 'rgba(244, 63, 94, 0.85)';
+                ctx.fill();
+                ctx.lineWidth = 2.5;
+                ctx.strokeStyle = orb.isCorrect ? '#34d399' : '#fb7185';
+                ctx.stroke();
+
+                // Text inside Orb
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 11px Plus Jakarta Sans';
+                ctx.textAlign = 'center';
+                ctx.fillText(orb.syllable, orb.x, orb.y + 4);
+
+                // Collision Box
+                const px = player.x + player.width / 2;
+                const py = player.y + player.height / 2;
+                const dist = Math.hypot(orb.x - px, orb.y - py);
+
+                if (dist < orb.radius + player.width / 2) {
+                    if (orb.isCorrect) {
+                        playSuccessSound();
+                        gameState.l3Score++;
+                        updateXP(40);
+                        document.getElementById('l3-score').textContent = `${gameState.l3Score}/5 Runes`;
+                    } else {
+                        playErrorSound();
+                    }
+                    // Reset Orb Position
+                    orb.y = -Math.random() * 200 - 40;
+                    orb.x = Math.random() * (canvas.width - 60) + 30;
+                }
+
+                // Reset when falling past screen
+                if (orb.y > canvas.height + 40) {
+                    orb.y = -Math.random() * 200 - 40;
+                    orb.x = Math.random() * (canvas.width - 60) + 30;
+                }
+            });
+
+            // Check Win Condition
+            if (gameState.l3Score >= 5) {
+                gameState.completedLevels.add(1);
+                gameState.completedLevels.add(2);
+                gameState.completedLevels.add(3);
+                playSuccessSound();
+                updateXP(150);
+                alert('🎉 Congratulations! You have collected all 5 Stress Runes in Level 3!');
+                checkVictoryCondition();
+                return;
+            }
+
+            gameLoopReq = requestAnimationFrame(gameLoop);
+        }
+
+        function skipLevel3ToVictory() {
+            gameState.l3Score = 5;
+            gameState.completedLevels.add(1);
+            gameState.completedLevels.add(2);
+            gameState.completedLevels.add(3);
+            updateXP(200);
+            checkVictoryCondition();
+        }
+
+        function claimCertificateDirectly() {
+            const nameInput = document.getElementById('player-name-input').value.trim();
+            if (nameInput) gameState.playerName = nameInput;
+            gameState.completedLevels.add(1);
+            gameState.completedLevels.add(2);
+            gameState.completedLevels.add(3);
+            if (gameState.xp < 500) gameState.xp = 750;
+            checkVictoryCondition();
+        }
+
+        function checkVictoryCondition() {
+            if (gameState.completedLevels.size >= 3) {
+                document.getElementById('cert-student-name').textContent = gameState.playerName || 'LG240 Scholar';
+                document.getElementById('cert-xp-score').textContent = `${gameState.xp} XP`;
+                showView('view-certificate');
+            }
+        }
+    </script>
+</body>
+</html>

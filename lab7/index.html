@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Run: The Global Envoy | LG240 UiTM Shah Alam</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Quicksand', 'sans-serif'],
+                        display: ['Fredoka', 'sans-serif']
+                    },
+                    colors: {
+                        pastel: {
+                            pink: '#f472b6',
+                            rose: '#f43f5e',
+                            purple: '#c084fc',
+                            lavender: '#e9d5ff',
+                            blue: '#38bdf8',
+                            sky: '#bae6fd',
+                            mint: '#6ee7b7',
+                            cream: '#fdf4ff',
+                            gold: '#fde047'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fdf4ff;
+            color: #475569;
+            overflow-x: hidden;
+            user-select: none;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .pastel-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border: 2px solid rgba(244, 114, 182, 0.3);
+            box-shadow: 0 10px 30px -5px rgba(192, 132, 252, 0.2);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fdf4ff; }
+        ::-webkit-scrollbar-thumb { background: #f472b6; border-radius: 9999px; }
+
+        /* ABSOLUTE PRECISION @media print STYLING (Flawless Single-Page A4 Landscape Alignment) */
+        @media print {
+            @page {
+                size: A4 landscape;
+                margin: 0;
+            }
+            html, body {
+                width: 100% !important;
+                height: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #ffffff !important;
+                color: #000000 !important;
+                overflow: hidden !important;
+            }
+            body * {
+                display: none !important;
+            }
+            #printable-certificate-modal,
+            #printable-certificate-modal * {
+                display: block !important;
+            }
+            #printable-certificate-modal {
+                position: absolute !important;
+                left: 0 !important;
+                top: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #ffffff !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                box-sizing: border-box !important;
+                z-index: 999999 !important;
+            }
+            #cert-card-inner,
+            #cert-card-inner * {
+                display: block !important;
+            }
+            #cert-card-inner {
+                width: 270mm !important;
+                height: 185mm !important;
+                margin: auto !important;
+                box-sizing: border-box !important;
+                border: 6px double #c084fc !important;
+                background: #fffdf5 !important;
+                padding: 1.8rem 2.5rem !important;
+                border-radius: 2rem !important;
+                color: #334155 !important;
+                box-shadow: none !important;
+                page-break-inside: avoid !important;
+            }
+            #cert-card-inner .cert-flex-header {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+            }
+            #cert-card-inner .cert-grid-footer {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-pink-300 selection:text-slate-800">
+
+    <!-- TOP NAVIGATION HEADER -->
+    <header class="no-print sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b-2 border-pink-200 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            
+            <!-- Logo & Title -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="showDashboard()">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-pink-400 via-purple-400 to-sky-300 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-pink-200">
+                    <i class="fa-solid fa-earth-americas"></i>
+                </div>
+                <div>
+                    <h1 class="font-display font-bold text-xl text-slate-800 leading-none tracking-wide flex items-center gap-2">
+                        CULTURAL RUN
+                        <span class="text-[10px] uppercase font-sans font-extrabold bg-pink-100 text-pink-600 px-2.5 py-0.5 rounded-full border border-pink-300">Global Envoy Edition</span>
+                    </h1>
+                    <p class="text-xs text-purple-600 font-bold mt-0.5">
+                        LG240 UiTM Shah Alam &bull; <span class="text-pink-500 font-black">Designed by Wan Ainun Nashwa</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Dashboard Stats & Direct Claim Button -->
+            <div class="flex items-center space-x-2 sm:space-x-3 text-xs font-bold">
+                <div class="pastel-glass px-3.5 py-1.5 rounded-full flex items-center space-x-2 border-pink-300 text-slate-700">
+                    <i class="fa-solid fa-sparkles text-pink-500 text-sm"></i>
+                    <span>XP: <span id="stat-xp" class="text-pink-600 font-mono text-sm">0</span></span>
+                </div>
+
+                <div class="hidden sm:flex pastel-glass px-3.5 py-1.5 rounded-full items-center space-x-2 border-sky-300 text-slate-700">
+                    <i class="fa-solid fa-gem text-sky-500 text-sm"></i>
+                    <span>Artifacts: <span id="stat-gems" class="text-sky-600 font-mono">0</span></span>
+                </div>
+
+                <!-- Instant Claim Certificate Shortcut -->
+                <button onclick="claimCertificateDirectly()" class="px-4 py-2 rounded-full bg-gradient-to-r from-purple-400 via-pink-400 to-sky-300 text-white font-extrabold hover:brightness-105 transition-all flex items-center space-x-1.5 shadow-md shadow-pink-200">
+                    <i class="fa-solid fa-certificate"></i>
+                    <span>🏆 Claim Certificate</span>
+                </button>
+
+                <!-- Audio Toggle -->
+                <button onclick="toggleAudio()" id="btn-sound" class="p-2 rounded-xl bg-pink-50 border border-pink-200 text-pink-500 hover:bg-pink-100 transition-all">
+                    <i class="fa-solid fa-volume-high" id="sound-icon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN APP WRAPPER -->
+    <main class="no-print max-w-7xl mx-auto px-4 py-4 flex-grow w-full flex flex-col justify-center">
+
+        <!-- 1. DASHBOARD / MENU SCREEN -->
+        <section id="view-dashboard" class="space-y-6">
+            <div class="pastel-glass rounded-3xl p-6 sm:p-10 border-2 border-pink-300 relative overflow-hidden shadow-xl bg-white/90">
+                <!-- Ambient Decorative Shapes -->
+                <div class="absolute -right-16 -top-16 w-72 h-72 bg-pink-200/60 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="absolute -left-16 -bottom-16 w-72 h-72 bg-purple-200/60 rounded-full blur-2xl pointer-events-none"></div>
+
+                <div class="relative z-10 max-w-3xl space-y-4">
+                    <div class="inline-flex items-center space-x-2 px-4 py-1 rounded-full bg-pink-100 border border-pink-300 text-pink-700 text-xs font-black uppercase tracking-wider">
+                        <i class="fa-solid fa-plane-departure text-purple-500"></i>
+                        <span>Cross-Cultural Communication Edutainment</span>
+                    </div>
+
+                    <h2 class="font-display text-3xl sm:text-5xl font-black text-slate-800 leading-tight">
+                        Dash Through Global Cultures! 🌸
+                    </h2>
+
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
+                        Guide your envoy runner across 3 global lanes! Dodge cultural missteps, jump over communication barriers, and collect cultural gems by identifying correct concepts in <strong>High/Low Context Cultures, Hofstede's Dimensions, Non-Verbal Proxemics & Global Business Etiquette</strong>.
+                    </p>
+
+                    <!-- Student Name Input -->
+                    <div class="pt-2">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-purple-600 mb-1.5">Enter Envoy Name (For Official UiTM Certificate):</label>
+                        <div class="flex max-w-md items-center space-x-2">
+                            <div class="relative w-full">
+                                <i class="fa-solid fa-graduation-cap absolute left-3.5 top-3 text-pink-400"></i>
+                                <input type="text" id="player-name" placeholder="e.g. Wan Ainun Nashwa" value="LG240 Envoy Scholar" 
+                                    class="w-full bg-white border-2 border-pink-300 rounded-xl pl-10 pr-4 py-2.5 text-sm text-purple-800 font-bold focus:outline-none focus:ring-2 focus:ring-purple-400">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Start Game Button -->
+                    <div class="pt-4 flex flex-wrap gap-4">
+                        <button onclick="startGame()" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-pink-400 via-purple-400 to-sky-400 hover:brightness-105 font-display font-black text-lg text-white shadow-lg shadow-pink-200 transition-all flex items-center space-x-3 transform hover:-translate-y-0.5">
+                            <i class="fa-solid fa-person-running text-2xl text-yellow-200"></i>
+                            <span>START RUNNING</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Theory Topic Cards Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 pt-6 border-t-2 border-pink-100">
+                    <div class="bg-pink-50/80 p-3 rounded-2xl border border-pink-200 text-xs">
+                        <span class="text-pink-600 font-bold block">Context Theory</span>
+                        <span class="text-slate-500 text-[11px]">Edward T. Hall</span>
+                    </div>
+                    <div class="bg-purple-50/80 p-3 rounded-2xl border border-purple-200 text-xs">
+                        <span class="text-purple-600 font-bold block">Cultural Dimensions</span>
+                        <span class="text-slate-500 text-[11px]">Geert Hofstede</span>
+                    </div>
+                    <div class="bg-sky-50/80 p-3 rounded-2xl border border-sky-200 text-xs">
+                        <span class="text-sky-600 font-bold block">Non-Verbal & Space</span>
+                        <span class="text-slate-500 text-[11px]">Proxemics & Kinesics</span>
+                    </div>
+                    <div class="bg-emerald-50/80 p-3 rounded-2xl border border-emerald-200 text-xs">
+                        <span class="text-emerald-600 font-bold block">Ethnocentrism</span>
+                        <span class="text-slate-500 text-[11px]">Bennett DMIS Model</span>
+                    </div>
+                </div>
+
+                <!-- Mandatory Branding Footer Banner -->
+                <div class="mt-6 pt-3 flex items-center justify-between text-xs text-slate-400 font-bold">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-pink-400 animate-ping"></span>
+                        <span>LG240 Temple-Run Arcade v4.0</span>
+                    </div>
+                    <div class="font-extrabold text-pink-600 tracking-wider">
+                        ★ DESIGNED BY WAN AINUN NASHWA ★
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. GAME CANVAS VIEW -->
+        <section id="view-game" class="hidden space-y-3">
+            <!-- Target Prompt Header Box -->
+            <div class="pastel-glass rounded-2xl p-4 border-2 border-pink-300 flex flex-col md:flex-row items-center justify-between gap-3 bg-white">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-purple-100 border border-purple-300 flex items-center justify-center text-purple-600 font-bold text-lg">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <div>
+                        <span class="text-[11px] font-black uppercase text-pink-600 tracking-wider">Active Cross-Cultural Quest:</span>
+                        <h3 id="game-prompt-text" class="text-sm sm:text-base font-bold text-slate-800 leading-tight">
+                            "Collect the gem matching: Cultures that rely heavily on explicit, direct verbal messages (e.g. USA, Germany)."
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3 flex-shrink-0">
+                    <div class="text-right text-xs">
+                        <span class="text-slate-400 block font-bold">Milestone:</span>
+                        <span id="game-stage-indicator" class="text-purple-600 font-black font-mono">Question 1/7</span>
+                    </div>
+                    <button onclick="showDashboard()" class="px-3.5 py-1.5 rounded-xl bg-pink-50 hover:bg-pink-100 text-xs font-bold text-pink-600 border border-pink-200">
+                        <i class="fa-solid fa-pause mr-1"></i> Exit Run
+                    </button>
+                </div>
+            </div>
+
+            <!-- Arcade Canvas Container -->
+            <div class="relative w-full aspect-[16/9] max-h-[540px] bg-slate-900 rounded-3xl overflow-hidden border-4 border-pink-300 shadow-2xl">
+                <canvas id="runner-canvas" class="w-full h-full block"></canvas>
+
+                <!-- On-Screen Touch Controls (Mobile/Desktop UI) -->
+                <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end pointer-events-none">
+                    <div class="bg-white/85 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-pink-200 text-xs text-slate-700 space-y-0.5 shadow-md">
+                        <div><kbd class="px-1.5 py-0.5 bg-pink-100 rounded text-pink-600 font-bold">←</kbd> <kbd class="px-1.5 py-0.5 bg-pink-100 rounded text-pink-600 font-bold">→</kbd> Change Lane</div>
+                        <div><kbd class="px-1.5 py-0.5 bg-purple-100 rounded text-purple-600 font-bold">↑</kbd> or <kbd class="px-1.5 py-0.5 bg-purple-100 rounded text-purple-600 font-bold">SPACE</kbd> Jump | <kbd class="px-1.5 py-0.5 bg-sky-100 rounded text-sky-600 font-bold">↓</kbd> Duck</div>
+                    </div>
+
+                    <!-- Touch Action Buttons -->
+                    <div class="pointer-events-auto flex space-x-2">
+                        <button onclick="movePlayerLeft()" class="w-12 h-12 rounded-2xl bg-white/90 text-purple-600 font-black text-xl shadow-md border border-purple-200 active:scale-95">←</button>
+                        <button onclick="playerJump()" class="w-12 h-12 rounded-2xl bg-pink-400 text-white font-black text-xl shadow-md border border-pink-300 active:scale-95">↑</button>
+                        <button onclick="playerDuck()" class="w-12 h-12 rounded-2xl bg-sky-400 text-white font-black text-xl shadow-md border border-sky-300 active:scale-95">↓</button>
+                        <button onclick="movePlayerRight()" class="w-12 h-12 rounded-2xl bg-white/90 text-purple-600 font-black text-xl shadow-md border border-purple-200 active:scale-95">→</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER BRANDING -->
+    <footer class="no-print border-t-2 border-pink-200 bg-white py-3 text-center text-xs text-slate-500 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div>
+                <strong class="text-purple-600">Cultural Run: The Global Envoy</strong> &bull; LG240 UiTM Shah Alam
+            </div>
+            <div class="font-black text-pink-500 tracking-wider">
+                DESIGNED BY WAN AINUN NASHWA
+            </div>
+        </div>
+    </footer>
+
+    <!-- 3. CERTIFICATE MODAL & PRINT CONTAINER -->
+    <div id="printable-certificate-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md overflow-y-auto">
+        <div class="w-full max-w-4xl space-y-4 my-auto">
+            
+            <!-- Close / Action Buttons (Hidden during @media print) -->
+            <div class="no-print flex items-center justify-between">
+                <div class="text-xs font-bold text-pink-600 flex items-center space-x-2">
+                    <i class="fa-solid fa-sparkles text-base text-yellow-400"></i>
+                    <span>Cross-Cultural Envoy Certificate Unlocked</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="window.print()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-pink-400 to-purple-400 hover:brightness-105 text-white font-display font-black text-sm shadow-lg flex items-center space-x-2 transition-all">
+                        <i class="fa-solid fa-print"></i>
+                        <span>Print / Save PDF</span>
+                    </button>
+                    <button onclick="closeCertificateModal()" class="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-xs font-bold text-slate-700 border border-slate-300">
+                        <i class="fa-solid fa-xmark"></i> Close
+                    </button>
+                </div>
+            </div>
+
+            <!-- Single-Page Certificate Card (Strictly Formatted for Print) -->
+            <div id="cert-card-inner" class="bg-white border-4 border-purple-300 p-8 sm:p-12 rounded-3xl text-slate-800 shadow-2xl relative space-y-6">
+                
+                <!-- Header Badge (Flex for Print Alignment) -->
+                <div class="cert-flex-header flex items-center justify-between border-b-2 border-pink-100 pb-5">
+                    <div>
+                        <h4 class="font-display font-black text-xl text-purple-900 tracking-wider">UNIVERSITI TEKNOLOGI MARA (UiTM) SHAH ALAM</h4>
+                        <p class="text-xs font-bold text-pink-600">Faculty of Administrative Science & Policy Studies / LG240</p>
+                    </div>
+                    <div class="w-14 h-14 rounded-2xl bg-pink-100 border-2 border-pink-300 flex items-center justify-center text-pink-500 text-2xl font-black">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                </div>
+
+                <!-- Certificate Content -->
+                <div class="text-center space-y-3 py-2">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-slate-400">This Certificate of Global Communication Mastery is Awarded to</span>
+                    <h2 id="cert-student-name" class="font-display text-3xl sm:text-4xl font-black text-purple-950 underline decoration-pink-300 decoration-4 underline-offset-8">
+                        Wan Ainun Nashwa
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-xl mx-auto pt-2 font-medium">
+                        for successfully completing the Cultural Run arcade simulation and demonstrating exceptional mastery in High/Low Context Cultures, Hofstede's Cultural Dimensions, Non-Verbal Proxemics, and Global Business Etiquette.
+                    </p>
+                </div>
+
+                <!-- Certificate Metadata & Signatures (Grid/Flex for Print Alignment) -->
+                <div class="cert-grid-footer grid grid-cols-2 gap-6 pt-6 border-t-2 border-pink-100 text-xs">
+                    <div>
+                        <span class="text-[10px] text-slate-400 font-bold uppercase block">Mastery Score</span>
+                        <span id="cert-xp-display" class="font-mono font-black text-purple-700 text-base">840 XP • Master Cultural Envoy</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-[10px] text-slate-400 font-bold uppercase block">Course Lead & Designer</span>
+                        <span class="font-black text-pink-600 text-sm">Designed by Wan Ainun Nashwa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT GAME ENGINE -->
+    <script>
+        // --- WEB AUDIO API SYNTHESIZER ---
+        let audioCtx = null;
+        let soundEnabled = true;
+
+        function initAudio() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+
+        function playSound(freq, type = 'sine', duration = 0.12) {
+            if (!soundEnabled) return;
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {}
+        }
+
+        function playEatCorrect() {
+            playSound(659.25, 'sine', 0.08);
+            setTimeout(() => playSound(880, 'sine', 0.15), 80);
+        }
+
+        function playEatWrong() {
+            playSound(180, 'sawtooth', 0.15);
+        }
+
+        function toggleAudio() {
+            soundEnabled = !soundEnabled;
+            document.getElementById('sound-icon').className = soundEnabled ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark text-slate-400';
+        }
+
+        // --- CROSS CULTURAL QUESTION BANK ---
+        const culturalQuestions = [
+            {
+                prompt: "Collect the gem matching: Cultures relying on direct, explicit, verbal communication (e.g. USA, Germany).",
+                correct: "Low-Context Culture",
+                wrongs: ["High-Context Culture", "Ethnocentric Stage", "Collectivist Orient"]
+            },
+            {
+                prompt: "Collect the gem matching: Cultures where meaning is embedded in context, non-verbal cues & relationships (e.g. Japan, Malaysia).",
+                correct: "High-Context Culture",
+                wrongs: ["Low-Context Culture", "Individualistic Orientation", "Monochronic Time"]
+            },
+            {
+                prompt: "Collect the gem matching: Hofstede dimension measuring how much unequal power distribution is accepted.",
+                correct: "Power Distance Index (PDI)",
+                wrongs: ["Uncertainty Avoidance (UAI)", "Masculinity vs Femininity", "Individualism (IDV)"]
+            },
+            {
+                prompt: "Collect the gem matching: Non-verbal communication study regarding interpersonal space & distance.",
+                correct: "Proxemics",
+                wrongs: ["Kinesics", "Chronemics", "Haptics"]
+            },
+            {
+                prompt: "Collect the gem matching: Viewing one's own culture as superior and using it to judge other cultures.",
+                correct: "Ethnocentrism",
+                wrongs: ["Ethnorelativism", "Cultural Synergy", "Acculturation"]
+            },
+            {
+                prompt: "Collect the gem matching: Cultures preferring strict schedules, single tasks & linear time (e.g. Switzerland).",
+                correct: "Monochronic Time",
+                wrongs: ["Polychronic Time", "High Uncertainty Avoidance", "High Power Distance"]
+            },
+            {
+                prompt: "Collect the gem matching: Hofstede dimension where group harmony and loyalty outweigh individual goals.",
+                correct: "Collectivism",
+                wrongs: ["Individualism", "Short-Term Orientation", "Indulgence"]
+            }
+        ];
+
+        // --- GAME ENGINE STATE ---
+        let state = {
+            playerName: 'LG240 Envoy Scholar',
+            xp: 0,
+            gemsCount: 0,
+            questionIndex: 0,
+            canvas: null,
+            ctx: null,
+            animReq: null,
+            speed: 5
+        };
+
+        // Runner Lane Physics
+        const LANES = [-140, 0, 140]; // 3-lane X offsets
+        let player = {
+            lane: 1, // 0: Left, 1: Center, 2: Right
+            x: 0,
+            y: 0,
+            z: 0,
+            jumpY: 0,
+            isJumping: false,
+            isDucking: false,
+            jumpVel: 0
+        };
+
+        let trackObjects = []; // Gems & Obstacles
+
+        // --- ENGINE INITIALIZATION ---
+        function showDashboard() {
+            document.getElementById('view-dashboard').classList.remove('hidden');
+            document.getElementById('view-game').classList.add('hidden');
+            if (state.animReq) cancelAnimationFrame(state.animReq);
+        }
+
+        function startGame() {
+            const name = document.getElementById('player-name').value.trim();
+            if (name) state.playerName = name;
+
+            document.getElementById('view-dashboard').classList.add('hidden');
+            document.getElementById('view-game').classList.remove('hidden');
+
+            state.canvas = document.getElementById('runner-canvas');
+            state.ctx = state.canvas.getContext('2d');
+
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            // Keyboard Listeners
+            window.onkeydown = (e) => {
+                if (e.key === 'ArrowLeft' || e.key === 'a') movePlayerLeft();
+                if (e.key === 'ArrowRight' || e.key === 'd') movePlayerRight();
+                if (e.key === 'ArrowUp' || e.key === 'w' || e.key === ' ') playerJump();
+                if (e.key === 'ArrowDown' || e.key === 's') playerDuck();
+            };
+
+            // Reset Engine State
+            state.xp = 0;
+            state.gemsCount = 0;
+            state.questionIndex = 0;
+            player.lane = 1;
+            player.x = LANES[1];
+            player.jumpY = 0;
+            player.isJumping = false;
+
+            loadQuestion();
+
+            if (state.animReq) cancelAnimationFrame(state.animReq);
+            gameLoop();
+        }
+
+        function resizeCanvas() {
+            if (!state.canvas) return;
+            const rect = state.canvas.parentElement.getBoundingClientRect();
+            state.canvas.width = rect.width;
+            state.canvas.height = rect.height;
+        }
+
+        function movePlayerLeft() {
+            if (player.lane > 0) player.lane--;
+        }
+        function movePlayerRight() {
+            if (player.lane < 2) player.lane++;
+        }
+        function playerJump() {
+            if (!player.isJumping) {
+                player.isJumping = true;
+                player.jumpVel = 14;
+            }
+        }
+        function playerDuck() {
+            if (!player.isDucking) {
+                player.isDucking = true;
+                setTimeout(() => player.isDucking = false, 600);
+            }
+        }
+
+        function loadQuestion() {
+            if (state.questionIndex >= culturalQuestions.length) {
+                claimCertificateDirectly();
+                return;
+            }
+
+            const q = culturalQuestions[state.questionIndex];
+            document.getElementById('game-prompt-text').textContent = q.prompt;
+            document.getElementById('game-stage-indicator').textContent = `Question ${state.questionIndex + 1}/${culturalQuestions.length}`;
+
+            // Spawn track gems forward along Z axis
+            trackObjects = [];
+            const options = [q.correct, ...q.wrongs];
+
+            for (let i = 0; i < 6; i++) {
+                const laneIdx = i % 3;
+                const isCorrect = (i % options.length === 0);
+                const text = isCorrect ? q.correct : q.wrongs[i % q.wrongs.length];
+
+                trackObjects.push({
+                    x: LANES[laneIdx],
+                    z: 600 + (i * 350),
+                    text: text,
+                    isCorrect: isCorrect,
+                    color: isCorrect ? '#f472b6' : (i % 2 === 0 ? '#c084fc' : '#38bdf8')
+                });
+            }
+        }
+
+        // --- MAIN GAME LOOP ---
+        function gameLoop() {
+            update();
+            render();
+            state.animReq = requestAnimationFrame(gameLoop);
+        }
+
+        function update() {
+            // Smooth Lane Transition
+            const targetX = LANES[player.lane];
+            player.x += (targetX - player.x) * 0.25;
+
+            // Jump Physics
+            if (player.isJumping) {
+                player.jumpY += player.jumpVel;
+                player.jumpVel -= 0.8;
+                if (player.jumpY <= 0) {
+                    player.jumpY = 0;
+                    player.isJumping = false;
+                }
+            }
+
+            // Move Track Objects toward player
+            trackObjects.forEach((obj, idx) => {
+                obj.z -= state.speed;
+
+                // Check Collision with player when obj comes close
+                if (obj.z > 20 && obj.z < 80) {
+                    const laneDistance = Math.abs(player.x - obj.x);
+                    if (laneDistance < 60 && player.jumpY < 40) {
+                        if (obj.isCorrect) {
+                            playEatCorrect();
+                            state.xp += 120;
+                            state.gemsCount += 1;
+                            document.getElementById('stat-xp').textContent = state.xp;
+                            document.getElementById('stat-gems').textContent = state.gemsCount;
+
+                            state.questionIndex++;
+                            loadQuestion();
+                        } else {
+                            playEatWrong();
+                            state.xp = Math.max(0, state.xp - 30);
+                            document.getElementById('stat-xp').textContent = state.xp;
+                            // Push back object so it doesn't re-collide
+                            obj.z = -100;
+                        }
+                    }
+                }
+
+                // Recycle object if passed
+                if (obj.z < -100) {
+                    obj.z = 1800;
+                }
+            });
+        }
+
+        function render() {
+            const ctx = state.ctx;
+            const w = state.canvas.width;
+            const h = state.canvas.height;
+            const horizonY = h * 0.4;
+            const centerX = w / 2;
+
+            ctx.clearRect(0, 0, w, h);
+
+            // Pastel Sky Gradient
+            const skyGrad = ctx.createLinearGradient(0, 0, 0, horizonY);
+            skyGrad.addColorStop(0, '#bae6fd'); // Pastel Sky Blue
+            skyGrad.addColorStop(1, '#fdf4ff'); // Soft Cream
+            ctx.fillStyle = skyGrad;
+            ctx.fillRect(0, 0, w, horizonY);
+
+            // Pastel Horizon Sun
+            ctx.beginPath();
+            ctx.arc(centerX, horizonY - 10, 50, 0, Math.PI * 2);
+            ctx.fillStyle = '#fde047';
+            ctx.fill();
+
+            // Pastel Ground / Track Floor
+            const groundGrad = ctx.createLinearGradient(0, horizonY, 0, h);
+            groundGrad.addColorStop(0, '#fbcfe8'); // Soft Pink
+            groundGrad.addColorStop(1, '#e9d5ff'); // Pastel Lavender
+            ctx.fillStyle = groundGrad;
+            ctx.fillRect(0, horizonY, w, h - horizonY);
+
+            // Draw Perspective 3 Lanes
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
+            ctx.lineWidth = 4;
+
+            [-210, -70, 70, 210].forEach(offset => {
+                ctx.beginPath();
+                ctx.moveTo(centerX + (offset * 0.2), horizonY);
+                ctx.lineTo(centerX + (offset * 2.8), h);
+                ctx.stroke();
+            });
+
+            // Draw Objects (Sorted by Z distance so far objects render first)
+            const sortedObjs = [...trackObjects].sort((a, b) => b.z - a.z);
+
+            sortedObjs.forEach(obj => {
+                if (obj.z <= 10) return;
+                const scale = 300 / (300 + obj.z);
+                const screenX = centerX + (obj.x * scale * 2.2);
+                const screenY = horizonY + (160 * scale);
+                const r = 24 * scale;
+
+                // Draw Gem
+                ctx.beginPath();
+                ctx.arc(screenX, screenY, Math.max(4, r), 0, Math.PI * 2);
+                ctx.fillStyle = obj.color;
+                ctx.fill();
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = 2 * scale;
+                ctx.stroke();
+
+                // Draw Gem Concept Label
+                if (scale > 0.35) {
+                    ctx.fillStyle = '#334155';
+                    ctx.font = `bold ${Math.max(10, Math.floor(13 * scale))}px Quicksand`;
+                    ctx.textAlign = 'center';
+                    ctx.fillText(obj.text, screenX, screenY - r - 6);
+                }
+            });
+
+            // Draw Runner Player Character
+            const playerScale = 1;
+            const playerScreenX = centerX + (player.x * 1.8);
+            const playerScreenY = h - 90 - player.jumpY;
+
+            // Character Shadow
+            ctx.beginPath();
+            ctx.ellipse(playerScreenX, h - 75, 24, 8, 0, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(192, 132, 252, 0.4)';
+            ctx.fill();
+
+            // Player Avatar Body (Girlish Envoy Style)
+            ctx.fillStyle = '#f472b6'; // Pastel Pink Outfit
+            ctx.beginPath();
+            ctx.arc(playerScreenX, playerScreenY - (player.isDucking ? 10 : 25), 18, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Player Head
+            ctx.fillStyle = '#fde047'; // Crown/Hair
+            ctx.beginPath();
+            ctx.arc(playerScreenX, playerScreenY - (player.isDucking ? 26 : 48), 12, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Name Tag Above Runner
+            ctx.fillStyle = '#475569';
+            ctx.font = 'bold 12px Quicksand';
+            ctx.textAlign = 'center';
+            ctx.fillText(state.playerName, playerScreenX, playerScreenY - 68);
+        }
+
+        // --- CERTIFICATE MODAL LOGIC ---
+        function claimCertificateDirectly() {
+            const name = document.getElementById('player-name').value.trim();
+            if (name) state.playerName = name;
+            if (state.xp < 500) state.xp = 840;
+
+            document.getElementById('cert-student-name').textContent = state.playerName;
+            document.getElementById('cert-xp-display').textContent = `${state.xp} XP • Master Cultural Envoy`;
+
+            document.getElementById('printable-certificate-modal').classList.remove('hidden');
+        }
+
+        function closeCertificateModal() {
+            document.getElementById('printable-certificate-modal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

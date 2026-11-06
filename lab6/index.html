@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psych Snake: The Theory Hunter | Educational Psychology</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Fredoka', 'sans-serif']
+                    },
+                    colors: {
+                        cyber: {
+                            bg: '#050814',
+                            card: '#0d1326',
+                            border: '#1e293b',
+                            violet: '#8b5cf6',
+                            cyan: '#06b6d4',
+                            pink: '#ec4899',
+                            gold: '#fbbf24'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050814;
+            color: #f8fafc;
+            overflow-x: hidden;
+            user-select: none;
+        }
+        .glass-card {
+            background: rgba(13, 19, 38, 0.9);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 10px 40px -10px rgba(139, 92, 246, 0.25);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050814; }
+        ::-webkit-scrollbar-thumb { background: #8b5cf6; border-radius: 9999px; }
+
+        /* ABSOLUTE PRECISION @media print STYLING (Flawless Single-Page A4 Landscape Alignment) */
+        @media print {
+            @page {
+                size: A4 landscape;
+                margin: 0;
+            }
+            html, body {
+                width: 100% !important;
+                height: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #ffffff !important;
+                color: #000000 !important;
+                overflow: hidden !important;
+            }
+            /* Hide EVERYTHING by default */
+            body * {
+                display: none !important;
+            }
+            /* Reveal ONLY the Certificate Overlay Container */
+            #printable-certificate-modal,
+            #printable-certificate-modal * {
+                display: block !important;
+            }
+            #printable-certificate-modal {
+                position: absolute !important;
+                left: 0 !important;
+                top: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #ffffff !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                box-sizing: border-box !important;
+                z-index: 999999 !important;
+            }
+            #cert-card-inner,
+            #cert-card-inner * {
+                display: block !important;
+            }
+            #cert-card-inner {
+                width: 270mm !important;
+                height: 185mm !important;
+                margin: auto !important;
+                box-sizing: border-box !important;
+                border: 6px double #d97706 !important;
+                background: #fffdf5 !important;
+                padding: 1.8rem 2.5rem !important;
+                border-radius: 1.5rem !important;
+                color: #0f172a !important;
+                box-shadow: none !important;
+                page-break-inside: avoid !important;
+            }
+            /* Adjust internal text layouts for print display */
+            #cert-card-inner .cert-flex-header {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+            }
+            #cert-card-inner .cert-grid-footer {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-pink-500 selection:text-white">
+
+    <!-- TOP HEADER BAR -->
+    <header class="no-print sticky top-0 z-40 bg-slate-950/95 backdrop-blur-md border-b border-violet-900/40 px-4 py-2.5">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            
+            <!-- Logo & Title -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="showDashboard()">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 via-pink-500 to-cyan-400 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-violet-950/60">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <div>
+                    <h1 class="font-display font-bold text-lg text-white leading-none tracking-wide flex items-center gap-2">
+                        PSYCH SNAKE
+                        <span class="text-[10px] uppercase font-sans font-extrabold bg-gradient-to-r from-violet-400 to-pink-500 text-slate-950 px-2.5 py-0.5 rounded-full">Cyber-Neon Edition</span>
+                    </h1>
+                    <p class="text-xs text-violet-300/90 font-medium mt-0.5">
+                        Slither Edutainment &bull; <span class="text-cyan-300 font-extrabold">Designed by Wan Ainun Nashwa</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Stats Bar & Direct Claim Shortcut -->
+            <div class="flex items-center space-x-2 sm:space-x-3 text-xs font-bold">
+                <div class="glass-card px-3 py-1.5 rounded-full flex items-center space-x-2 border-violet-500/40">
+                    <i class="fa-solid fa-bolt text-amber-400 text-sm"></i>
+                    <span>XP: <span id="stat-xp" class="text-amber-400 font-mono text-sm">0</span></span>
+                </div>
+
+                <div class="hidden sm:flex glass-card px-3 py-1.5 rounded-full items-center space-x-2 border-cyan-500/40">
+                    <i class="fa-solid fa-ruler-combined text-cyan-400 text-sm"></i>
+                    <span>Snake Length: <span id="stat-length" class="text-cyan-300 font-mono">10</span></span>
+                </div>
+
+                <!-- Instant Claim Certificate Shortcut -->
+                <button onclick="claimCertificateDirectly()" class="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-400 text-slate-950 font-extrabold hover:brightness-110 transition-all flex items-center space-x-1.5 shadow-lg shadow-amber-500/20">
+                    <i class="fa-solid fa-certificate"></i>
+                    <span>🏆 Claim Certificate</span>
+                </button>
+
+                <!-- Audio Toggle -->
+                <button onclick="toggleAudio()" id="btn-sound" class="p-2 rounded-xl bg-slate-900 border border-slate-700 text-violet-400 hover:text-white transition-all">
+                    <i class="fa-solid fa-volume-high" id="sound-icon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN APP WRAPPER -->
+    <main class="no-print max-w-7xl mx-auto px-4 py-4 flex-grow w-full flex flex-col justify-center">
+
+        <!-- 1. DASHBOARD / MENU SCREEN -->
+        <section id="view-dashboard" class="space-y-6">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-violet-500/40 relative overflow-hidden shadow-2xl">
+                <!-- Decorative Ambient Glows -->
+                <div class="absolute -right-20 -top-20 w-80 h-80 bg-violet-600/30 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-cyan-500/30 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 max-w-3xl space-y-4">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-slate-950 border border-violet-500/50 text-cyan-300 text-xs font-extrabold uppercase tracking-wider">
+                        <i class="fa-solid fa-atom text-pink-400"></i>
+                        <span>Educational Psychology Cyber Arena</span>
+                    </div>
+
+                    <h2 class="font-display text-3xl sm:text-5xl font-black text-white leading-tight">
+                        Slither & Hunt Psychology Theories!
+                    </h2>
+
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Navigate your snake across the cyber matrix. Read the active <strong>Theory Clue</strong> at the top, then hunt and absorb the glowing food orb that matches the target concept (Piaget, Vygotsky, Bandura, Behaviorism, Maslow, Erikson & Bloom's Taxonomy)! Avoid decoy traps and rival AI snakes!
+                    </p>
+
+                    <!-- Student Name Input -->
+                    <div class="pt-2">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-cyan-300 mb-1.5">Enter Scholar Name (For Official Certificate):</label>
+                        <div class="flex max-w-md items-center space-x-2">
+                            <div class="relative w-full">
+                                <i class="fa-solid fa-user-graduate absolute left-3.5 top-3 text-violet-400"></i>
+                                <input type="text" id="player-name" placeholder="e.g. Nurul Syuhada" value="Psychology Scholar" 
+                                    class="w-full bg-slate-900 border border-violet-600 rounded-xl pl-10 pr-4 py-2.5 text-sm text-amber-300 font-bold focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Start Game Button -->
+                    <div class="pt-4 flex flex-wrap gap-4">
+                        <button onclick="startGame()" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-violet-600 via-pink-600 to-cyan-500 hover:brightness-110 font-display font-black text-lg text-white shadow-xl shadow-violet-950/80 transition-all flex items-center space-x-3 transform hover:-translate-y-0.5">
+                            <i class="fa-solid fa-play text-xl text-amber-300"></i>
+                            <span>ENTER THE ARENA</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Theory Coverage Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 pt-6 border-t border-violet-900/50">
+                    <div class="bg-slate-900/80 p-3 rounded-xl border border-violet-800/40 text-xs">
+                        <span class="text-cyan-400 font-bold block">Cognitive & ZPD</span>
+                        <span class="text-slate-400 text-[11px]">Piaget & Vygotsky</span>
+                    </div>
+                    <div class="bg-slate-900/80 p-3 rounded-xl border border-violet-800/40 text-xs">
+                        <span class="text-pink-400 font-bold block">Social & Behavioral</span>
+                        <span class="text-slate-400 text-[11px]">Bandura, Pavlov, Skinner</span>
+                    </div>
+                    <div class="bg-slate-900/80 p-3 rounded-xl border border-violet-800/40 text-xs">
+                        <span class="text-amber-400 font-bold block">Humanistic & Psychosocial</span>
+                        <span class="text-slate-400 text-[11px]">Maslow & Erikson</span>
+                    </div>
+                    <div class="bg-slate-900/80 p-3 rounded-xl border border-violet-800/40 text-xs">
+                        <span class="text-violet-400 font-bold block">Taxonomy & Domains</span>
+                        <span class="text-slate-400 text-[11px]">Bloom's Taxonomy</span>
+                    </div>
+                </div>
+
+                <!-- Mandatory Branding Footer Banner -->
+                <div class="mt-6 pt-3 flex items-center justify-between text-xs text-slate-400">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                        <span>Cyber Slither Engine v3.0</span>
+                    </div>
+                    <div class="font-extrabold text-cyan-300 tracking-wider">
+                        ★ DESIGNED BY WAN AINUN NASHWA ★
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. GAME CANVAS VIEW -->
+        <section id="view-game" class="hidden space-y-3">
+            <!-- Target Prompt Header Box -->
+            <div class="glass-card rounded-2xl p-4 border border-violet-500/40 flex flex-col md:flex-row items-center justify-between gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-violet-500/20 border border-violet-500/50 flex items-center justify-center text-pink-400 font-bold text-lg">
+                        <i class="fa-solid fa-crosshairs"></i>
+                    </div>
+                    <div>
+                        <span class="text-[11px] font-extrabold uppercase text-cyan-300 tracking-wider">Active Theory Prompt:</span>
+                        <h3 id="game-prompt-text" class="text-sm sm:text-base font-bold text-white leading-tight">
+                            "Find the concept: Learning through observation, imitation, and modeling."
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3 flex-shrink-0">
+                    <div class="text-right text-xs">
+                        <span class="text-slate-400 block">Stage Progress:</span>
+                        <span id="game-stage-indicator" class="text-cyan-300 font-bold font-mono">Question 1/7</span>
+                    </div>
+                    <button onclick="showDashboard()" class="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-xs font-bold border border-slate-700">
+                        <i class="fa-solid fa-pause mr-1"></i> Exit Arena
+                    </button>
+                </div>
+            </div>
+
+            <!-- Arcade Canvas Container -->
+            <div class="relative w-full aspect-[16/9] max-h-[540px] bg-slate-950 rounded-2xl overflow-hidden border-2 border-violet-600/60 shadow-2xl">
+                <canvas id="slither-canvas" class="w-full h-full block cursor-crosshair"></canvas>
+
+                <!-- On-Screen Controls / Help Overlay -->
+                <div class="absolute bottom-3 left-3 bg-slate-950/85 backdrop-blur-md px-3.5 py-2 rounded-xl border border-violet-900/60 text-[11px] text-slate-300 space-y-0.5 pointer-events-none">
+                    <div><i class="fa-solid fa-mouse-pointer text-cyan-400 mr-1"></i> Move Mouse / Touch to steer</div>
+                    <div><i class="fa-solid fa-keyboard text-amber-400 mr-1"></i> Hold <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-amber-300 font-mono">SPACE</kbd> or Left-Click to BOOST</div>
+                </div>
+
+                <!-- Mini-Map Canvas Overlay -->
+                <div class="absolute top-3 right-3 w-28 h-28 bg-slate-950/90 border-2 border-violet-500/50 rounded-xl overflow-hidden pointer-events-none shadow-lg">
+                    <canvas id="minimap-canvas" class="w-full h-full block"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER BRANDING -->
+    <footer class="no-print border-t border-violet-900/40 bg-slate-950 py-3 text-center text-xs text-slate-400 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div>
+                <strong class="text-violet-300">Psych Snake: The Theory Hunter</strong> &bull; Educational Psychology
+            </div>
+            <div class="font-extrabold text-cyan-400 tracking-wider">
+                DESIGNED BY WAN AINUN NASHWA
+            </div>
+        </div>
+    </footer>
+
+    <!-- 3. CERTIFICATE MODAL & PRINT CONTAINER -->
+    <div id="printable-certificate-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md overflow-y-auto">
+        <div class="w-full max-w-4xl space-y-4 my-auto">
+            
+            <!-- Close / Action Buttons (Hidden during @media print) -->
+            <div class="no-print flex items-center justify-between">
+                <div class="text-xs font-bold text-amber-400 flex items-center space-x-2">
+                    <i class="fa-solid fa-circle-check text-base"></i>
+                    <span>Educational Psychology Certificate Unlocked</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="window.print()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 hover:brightness-110 text-slate-950 font-display font-black text-sm shadow-lg flex items-center space-x-2 transition-all">
+                        <i class="fa-solid fa-print"></i>
+                        <span>Print / Save PDF</span>
+                    </button>
+                    <button onclick="closeCertificateModal()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold border border-slate-700">
+                        <i class="fa-solid fa-xmark"></i> Close
+                    </button>
+                </div>
+            </div>
+
+            <!-- Single-Page Certificate Card (Strictly Formatted for Print) -->
+            <div id="cert-card-inner" class="bg-amber-50/95 border-4 border-amber-600/80 p-8 sm:p-12 rounded-3xl text-slate-900 shadow-2xl relative space-y-6">
+                
+                <!-- Header Badge (Flex for Print Alignment) -->
+                <div class="cert-flex-header flex items-center justify-between border-b-2 border-amber-900/20 pb-5">
+                    <div>
+                        <h4 class="font-display font-black text-xl text-violet-950 tracking-wider">ACADEMY OF EDUCATIONAL PSYCHOLOGY</h4>
+                        <p class="text-xs font-bold text-violet-800">Faculty of Education & Behavioral Sciences</p>
+                    </div>
+                    <div class="w-14 h-14 rounded-2xl bg-amber-500/20 border-2 border-amber-600 flex items-center justify-center text-amber-700 text-2xl font-black">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                </div>
+
+                <!-- Certificate Content -->
+                <div class="text-center space-y-3 py-2">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-slate-600">This Certificate of Educational Theory Mastery is Awarded to</span>
+                    <h2 id="cert-student-name" class="font-display text-3xl sm:text-4xl font-black text-violet-950 underline decoration-amber-500 decoration-4 underline-offset-8">
+                        Nurul Syuhada
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed max-w-xl mx-auto pt-2">
+                        for successfully navigating the cyber arena and demonstrating high proficiency in Cognitive Development (Piaget/Vygotsky), Social Learning (Bandura), Operant & Classical Conditioning, Maslow's Hierarchy, and Bloom's Taxonomy.
+                    </p>
+                </div>
+
+                <!-- Certificate Metadata & Signatures (Grid/Flex for Print Alignment) -->
+                <div class="cert-grid-footer grid grid-cols-2 gap-6 pt-6 border-t-2 border-amber-900/20 text-xs">
+                    <div>
+                        <span class="text-[10px] text-slate-500 font-bold uppercase block">Achievement Rank</span>
+                        <span id="cert-xp-display" class="font-mono font-black text-violet-950 text-base">770 XP • Master Scholar</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-[10px] text-slate-500 font-bold uppercase block">Course Lead & Designer</span>
+                        <span class="font-black text-violet-950 text-sm">Designed by Wan Ainun Nashwa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT GAME ENGINE -->
+    <script>
+        // --- WEB AUDIO API SYNTHESIZER ---
+        let audioCtx = null;
+        let soundEnabled = true;
+
+        function initAudio() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+
+        function playSound(freq, type = 'sine', duration = 0.12) {
+            if (!soundEnabled) return;
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {}
+        }
+
+        function playEatCorrect() {
+            playSound(523.25, 'triangle', 0.08);
+            setTimeout(() => playSound(659.25, 'triangle', 0.08), 80);
+            setTimeout(() => playSound(783.99, 'triangle', 0.15), 160);
+        }
+
+        function playEatWrong() {
+            playSound(220, 'sawtooth', 0.1);
+            setTimeout(() => playSound(174.61, 'sawtooth', 0.2), 100);
+        }
+
+        function toggleAudio() {
+            soundEnabled = !soundEnabled;
+            document.getElementById('sound-icon').className = soundEnabled ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark text-slate-500';
+        }
+
+        // --- GAME QUESTION BANK ---
+        const psychQuestions = [
+            {
+                prompt: "Find the concept: Learning occurs through observation, imitation, and modeling.",
+                correctTheory: "Bandura: Social Learning Theory",
+                wrongTheories: ["Pavlov: Classical Conditioning", "Piaget: Sensorimotor Stage", "Erikson: Industry vs Inferiority"]
+            },
+            {
+                prompt: "Find the concept: The distance between what a learner can do independently and with scaffolding.",
+                correctTheory: "Vygotsky: Zone of Proximal Development (ZPD)",
+                wrongTheories: ["Bloom: Knowledge Taxonomy", "Skinner: Operant Conditioning", "Maslow: Physiological Needs"]
+            },
+            {
+                prompt: "Find the concept: Learning via voluntary behavior modification using rewards and punishments.",
+                correctTheory: "Skinner: Operant Conditioning",
+                wrongTheories: ["Bandura: Bobo Doll Experiment", "Piaget: Formal Operations", "Vygotsky: MKO (More Knowledgeable Other)"]
+            },
+            {
+                prompt: "Find the concept: Children actively construct knowledge through Assimilation & Accommodation.",
+                correctTheory: "Piaget: Cognitive Constructivism",
+                wrongTheories: ["Pavlov: Salivating Dogs", "Maslow: Self-Actualization", "Erikson: Identity vs Role Confusion"]
+            },
+            {
+                prompt: "Find the concept: A hierarchical pyramid of human motivation topped by Self-Actualization.",
+                correctTheory: "Maslow: Hierarchy of Needs",
+                wrongTheories: ["Bloom: Cognitive Domain", "Vygotsky: Scaffolding", "Bandura: Self-Efficacy"]
+            },
+            {
+                prompt: "Find the concept: Involuntary reflexive learning where a neutral stimulus gets paired with an unconditioned stimulus.",
+                correctTheory: "Pavlov: Classical Conditioning",
+                wrongTheories: ["Skinner: Positive Reinforcement", "Piaget: Concrete Operational", "Erikson: Trust vs Mistrust"]
+            },
+            {
+                prompt: "Find the concept: Educational classification of learning objectives from Remembering to Creating.",
+                correctTheory: "Bloom's Taxonomy",
+                wrongTheories: ["Vygotsky: Cultural Tools", "Maslow: Esteem Needs", "Bandura: Vicarious Reinforcement"]
+            }
+        ];
+
+        // --- GAME ENGINE STATE ---
+        let state = {
+            playerName: 'Psychology Scholar',
+            xp: 0,
+            questionIndex: 0,
+            worldSize: 2400,
+            canvas: null,
+            ctx: null,
+            miniCanvas: null,
+            miniCtx: null,
+            mouse: { x: 0, y: 0 },
+            isBoosting: false,
+            animReq: null
+        };
+
+        // Player Snake
+        let playerSnake = {
+            x: 1200,
+            y: 1200,
+            angle: 0,
+            speed: 3.5,
+            boostSpeed: 6.5,
+            radius: 16,
+            body: [],
+            length: 12
+        };
+
+        // Food Orbs & AI Bot Snakes
+        let foodOrbs = [];
+        let aiSnakes = [];
+
+        // --- ENGINE INITIALIZATION ---
+        function showDashboard() {
+            document.getElementById('view-dashboard').classList.remove('hidden');
+            document.getElementById('view-game').classList.add('hidden');
+            if (state.animReq) cancelAnimationFrame(state.animReq);
+        }
+
+        function startGame() {
+            const name = document.getElementById('player-name').value.trim();
+            if (name) state.playerName = name;
+
+            document.getElementById('view-dashboard').classList.add('hidden');
+            document.getElementById('view-game').classList.remove('hidden');
+
+            state.canvas = document.getElementById('slither-canvas');
+            state.ctx = state.canvas.getContext('2d');
+            state.miniCanvas = document.getElementById('minimap-canvas');
+            state.miniCtx = state.miniCanvas.getContext('2d');
+
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            // Reset Game State
+            state.xp = 0;
+            state.questionIndex = 0;
+            playerSnake.x = state.worldSize / 2;
+            playerSnake.y = state.worldSize / 2;
+            playerSnake.body = [];
+            playerSnake.length = 12;
+
+            for (let i = 0; i < playerSnake.length; i++) {
+                playerSnake.body.push({ x: playerSnake.x, y: playerSnake.y });
+            }
+
+            // Mouse & Touch Controls
+            const updateMouse = (e) => {
+                const rect = state.canvas.getBoundingClientRect();
+                state.mouse.x = e.clientX - rect.left - state.canvas.width / 2;
+                state.mouse.y = e.clientY - rect.top - state.canvas.height / 2;
+            };
+            window.addEventListener('mousemove', updateMouse);
+            state.canvas.addEventListener('touchmove', (e) => {
+                if (e.touches[0]) updateMouse(e.touches[0]);
+            });
+
+            // Key Controls for Boost
+            window.addEventListener('keydown', (e) => { if (e.code === 'Space') state.isBoosting = true; });
+            window.addEventListener('keyup', (e) => { if (e.code === 'Space') state.isBoosting = false; });
+            state.canvas.addEventListener('mousedown', () => state.isBoosting = true);
+            state.canvas.addEventListener('mouseup', () => state.isBoosting = false);
+
+            spawnAISnakes();
+            loadQuestion();
+
+            if (state.animReq) cancelAnimationFrame(state.animReq);
+            gameLoop();
+        }
+
+        function resizeCanvas() {
+            if (!state.canvas) return;
+            const rect = state.canvas.parentElement.getBoundingClientRect();
+            state.canvas.width = rect.width;
+            state.canvas.height = rect.height;
+
+            state.miniCanvas.width = 112;
+            state.miniCanvas.height = 112;
+        }
+
+        function loadQuestion() {
+            if (state.questionIndex >= psychQuestions.length) {
+                claimCertificateDirectly();
+                return;
+            }
+
+            const q = psychQuestions[state.questionIndex];
+            document.getElementById('game-prompt-text').textContent = q.prompt;
+            document.getElementById('game-stage-indicator').textContent = `Question ${state.questionIndex + 1}/${psychQuestions.length}`;
+
+            // Spawn Food Orbs across world
+            foodOrbs = [];
+            const allOptions = [q.correctTheory, ...q.wrongTheories];
+
+            // Spawn 25 total theory food orbs distributed around map
+            for (let i = 0; i < 28; i++) {
+                const isCorrect = (i % allOptions.length === 0);
+                const text = isCorrect ? q.correctTheory : q.wrongTheories[i % q.wrongTheories.length];
+                foodOrbs.push({
+                    x: Math.random() * (state.worldSize - 300) + 150,
+                    y: Math.random() * (state.worldSize - 300) + 150,
+                    radius: isCorrect ? 24 : 20,
+                    text: text,
+                    isCorrect: isCorrect,
+                    color: isCorrect ? '#14b8a6' : (i % 2 === 0 ? '#6366f1' : '#f43f5e'),
+                    pulse: Math.random() * Math.PI
+                });
+            }
+        }
+
+        function spawnAISnakes() {
+            aiSnakes = [];
+            const names = ['BanduraBot', 'PiagetAI', 'VygotskySnake'];
+            const colors = ['#f59e0b', '#ec4899', '#8b5cf6'];
+
+            for (let i = 0; i < 3; i++) {
+                const sx = Math.random() * state.worldSize;
+                const sy = Math.random() * state.worldSize;
+                let body = [];
+                for (let j = 0; j < 10; j++) body.push({ x: sx, y: sy });
+
+                aiSnakes.push({
+                    x: sx,
+                    y: sy,
+                    angle: Math.random() * Math.PI * 2,
+                    speed: 2.5,
+                    name: names[i],
+                    color: colors[i],
+                    body: body,
+                    changeDirTimer: 0
+                });
+            }
+        }
+
+        // --- MAIN GAME LOOP ---
+        function gameLoop() {
+            update();
+            render();
+            renderMiniMap();
+            state.animReq = requestAnimationFrame(gameLoop);
+        }
+
+        function update() {
+            // Update Player Angle based on mouse position
+            const targetAngle = Math.atan2(state.mouse.y, state.mouse.x);
+            // Smooth turning
+            let diff = targetAngle - playerSnake.angle;
+            while (diff < -Math.PI) diff += Math.PI * 2;
+            while (diff > Math.PI) diff -= Math.PI * 2;
+            playerSnake.angle += diff * 0.12;
+
+            // Move Player Head
+            const currentSpeed = state.isBoosting ? playerSnake.boostSpeed : playerSnake.speed;
+            playerSnake.x += Math.cos(playerSnake.angle) * currentSpeed;
+            playerSnake.y += Math.sin(playerSnake.angle) * currentSpeed;
+
+            // Constrain Player inside world borders
+            playerSnake.x = Math.max(50, Math.min(state.worldSize - 50, playerSnake.x));
+            playerSnake.y = Math.max(50, Math.min(state.worldSize - 50, playerSnake.y));
+
+            // Update Body Segments
+            playerSnake.body.unshift({ x: playerSnake.x, y: playerSnake.y });
+            while (playerSnake.body.length > playerSnake.length * 2.5) {
+                playerSnake.body.pop();
+            }
+
+            // Update AI Snakes
+            aiSnakes.forEach(bot => {
+                bot.changeDirTimer++;
+                if (bot.changeDirTimer > 80) {
+                    bot.angle += (Math.random() - 0.5) * 1.5;
+                    bot.changeDirTimer = 0;
+                }
+                bot.x += Math.cos(bot.angle) * bot.speed;
+                bot.y += Math.sin(bot.angle) * bot.speed;
+
+                bot.x = Math.max(50, Math.min(state.worldSize - 50, bot.x));
+                bot.y = Math.max(50, Math.min(state.worldSize - 50, bot.y));
+
+                bot.body.unshift({ x: bot.x, y: bot.y });
+                if (bot.body.length > 25) bot.body.pop();
+            });
+
+            // Check Collision with Theory Food Orbs
+            foodOrbs.forEach((orb, index) => {
+                orb.pulse += 0.05;
+                const dist = Math.hypot(playerSnake.x - orb.x, playerSnake.y - orb.y);
+
+                if (dist < playerSnake.radius + orb.radius) {
+                    if (orb.isCorrect) {
+                        playEatCorrect();
+                        state.xp += 110;
+                        playerSnake.length += 3;
+                        document.getElementById('stat-xp').textContent = state.xp;
+                        document.getElementById('stat-length').textContent = playerSnake.length;
+
+                        state.questionIndex++;
+                        loadQuestion();
+                    } else {
+                        playEatWrong();
+                        state.xp = Math.max(0, state.xp - 30);
+                        playerSnake.length = Math.max(8, playerSnake.length - 1);
+                        document.getElementById('stat-xp').textContent = state.xp;
+                        document.getElementById('stat-length').textContent = playerSnake.length;
+
+                        // Reposition wrong orb
+                        orb.x = Math.random() * (state.worldSize - 300) + 150;
+                        orb.y = Math.random() * (state.worldSize - 300) + 150;
+                    }
+                }
+            });
+        }
+
+        function render() {
+            const ctx = state.ctx;
+            const width = state.canvas.width;
+            const height = state.canvas.height;
+
+            // Camera offset centering on Player Snake Head
+            const camX = playerSnake.x - width / 2;
+            const camY = playerSnake.y - height / 2;
+
+            ctx.clearRect(0, 0, width, height);
+
+            ctx.save();
+            ctx.translate(-camX, -camY);
+
+            // Draw World Grid
+            ctx.strokeStyle = 'rgba(99, 102, 241, 0.08)';
+            ctx.lineWidth = 1;
+            const gridSize = 80;
+            for (let x = 0; x < state.worldSize; x += gridSize) {
+                ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, state.worldSize); ctx.stroke();
+            }
+            for (let y = 0; y < state.worldSize; y += gridSize) {
+                ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(state.worldSize, y); ctx.stroke();
+            }
+
+            // Draw World Boundary Wall
+            ctx.strokeStyle = '#f43f5e';
+            ctx.lineWidth = 8;
+            ctx.strokeRect(0, 0, state.worldSize, state.worldSize);
+
+            // Draw Food Orbs
+            foodOrbs.forEach(orb => {
+                const r = orb.radius + Math.sin(orb.pulse) * 2;
+                ctx.beginPath();
+                ctx.arc(orb.x, orb.y, r, 0, Math.PI * 2);
+                ctx.fillStyle = orb.color;
+                ctx.shadowColor = orb.color;
+                ctx.shadowBlur = orb.isCorrect ? 16 : 8;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+
+                // Theory Label text above orb
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 11px Plus Jakarta Sans';
+                ctx.textAlign = 'center';
+                ctx.fillText(orb.text, orb.x, orb.y - r - 6);
+            });
+
+            // Draw AI Snakes
+            aiSnakes.forEach(bot => {
+                ctx.fillStyle = bot.color;
+                bot.body.forEach((seg, i) => {
+                    ctx.beginPath();
+                    // Guarantee radius is never negative
+                    const r = Math.max(2, 14 - (i * 0.2));
+                    ctx.arc(seg.x, seg.y, r, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+            });
+
+            // Draw Player Snake Body
+            playerSnake.body.forEach((seg, i) => {
+                ctx.beginPath();
+                // Guarantee radius is never negative
+                const r = Math.max(2, playerSnake.radius - (i * 0.15));
+                ctx.arc(seg.x, seg.y, r, 0, Math.PI * 2);
+                ctx.fillStyle = i === 0 ? '#14b8a6' : (i % 2 === 0 ? '#6366f1' : '#a855f7');
+                ctx.shadowColor = '#14b8a6';
+                ctx.shadowBlur = i === 0 ? 12 : 0;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            });
+
+            // Draw Player Snake Eyes & Name
+            const head = playerSnake;
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 12px Plus Jakarta Sans';
+            ctx.textAlign = 'center';
+            ctx.fillText(state.playerName, head.x, head.y - 24);
+
+            ctx.restore();
+        }
+
+        function renderMiniMap() {
+            const mctx = state.miniCtx;
+            const mw = state.miniCanvas.width;
+            const mh = state.miniCanvas.height;
+            const scale = mw / state.worldSize;
+
+            mctx.clearRect(0, 0, mw, mh);
+            mctx.fillStyle = '#090d16';
+            mctx.fillRect(0, 0, mw, mh);
+
+            // Draw Food Orbs on MiniMap
+            foodOrbs.forEach(orb => {
+                mctx.fillStyle = orb.isCorrect ? '#14b8a6' : '#6366f1';
+                mctx.fillRect(orb.x * scale, orb.y * scale, 2, 2);
+            });
+
+            // Draw Player Dot
+            mctx.fillStyle = '#f59e0b';
+            mctx.beginPath();
+            mctx.arc(playerSnake.x * scale, playerSnake.y * scale, 3, 0, Math.PI * 2);
+            mctx.fill();
+        }
+
+        // --- CERTIFICATE MODAL LOGIC ---
+        function claimCertificateDirectly() {
+            const name = document.getElementById('player-name').value.trim();
+            if (name) state.playerName = name;
+            if (state.xp < 500) state.xp = 770;
+
+            document.getElementById('cert-student-name').textContent = state.playerName;
+            document.getElementById('cert-xp-display').textContent = `${state.xp} XP • Educational Psychology Master`;
+
+            document.getElementById('printable-certificate-modal').classList.remove('hidden');
+        }
+
+        function closeCertificateModal() {
+            document.getElementById('printable-certificate-modal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
